@@ -13,8 +13,8 @@ export default defineConfig({
 		starlight({
 			title: 'Akagi',
 			components:{
-				SocialIcons:'./src/components/base/GlobalPlugin.astro',
-				Footer:'./src/components/base/TheFooter.astro',
+				SocialIcons:'./src/components/layout/GlobalPlugin.astro',
+				Footer:'./src/components/layout/TheFooter.astro',
 			},
 			sidebar: [
 				{

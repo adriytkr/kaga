@@ -1,0 +1,37 @@
+---
+interface Props{
+  src:ImageMetadata;
+  alt?:string;
+}
+
+const {src,alt=''}=Astro.props;
+
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+---
+
+<figure class="labeledImage">
+  <Image
+    class="labeledImage-img"
+    src={src}
+    alt={alt}
+  />
+  <figcaption class="labeledImage-description">
+    <slot></slot>
+  </figcaption>
+</figure>
+
+<style>
+.labeledImage-description{
+  margin-top:6px;
+  color:var(--sl-color-gray-3);
+  text-align:center;
+}
+
+.labeledImage-img{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:cover;
+}
+</style>

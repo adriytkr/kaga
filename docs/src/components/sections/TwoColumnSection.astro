@@ -1,0 +1,46 @@
+---
+interface Props{
+  reverse:boolean;
+}
+
+const {reverse}=Astro.props;
+
+import BaseSection from './BaseSection.astro';
+---
+
+<BaseSection>
+  <div
+    class="twoColumnSection"
+  >
+    <div class="twoColumnSection-column is-first">
+      <slot name="first"></slot>
+    </div>
+    <div
+      class="twoColumnSection-column is-second"
+      class:list={[{'reverse':reverse}]}
+    >
+      <slot name="second"></slot>
+    </div>
+  </div>
+</BaseSection>
+
+<style>
+.twoColumnSection{
+  display:grid;
+  gap:24px;
+}
+
+.twoColumnSection-column.is-second.reverse{
+  order:-1;
+}
+
+@media screen and (min-width:768px){
+  .twoColumnSection{
+    grid-template-columns:repeat(2,1fr);
+    align-items:center;
+  }
+  .twoColumnSection-column.is-second.reverse{
+    order:2;
+  }
+}
+</style>

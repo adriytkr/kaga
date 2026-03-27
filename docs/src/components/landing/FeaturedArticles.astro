@@ -1,16 +1,16 @@
 ---
 import {getCollection} from 'astro:content';
 
-import ArticleList from './ArticleList.astro';
-import ArticleCard from './ArticleCard.astro';
+import {ArticlesGrid,ArticleCard} from '../base/';
 
 const docs=await getCollection('docs');
+
 const featuredArticles=docs.filter(doc=>doc.data.isArticle&&doc.data.isFeatured);
 const shuffled=featuredArticles.sort(()=>0.5-Math.random());
 const randomArticles=shuffled.slice(0,3);
 ---
 
-<ArticleList>
+<ArticlesGrid>
   {
     randomArticles.map(article=>(
         <ArticleCard
@@ -24,4 +24,4 @@ const randomArticles=shuffled.slice(0,3);
       )
     )
   }
-</ArticleList>
+</ArticlesGrid>

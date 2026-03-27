@@ -1,14 +1,14 @@
 ---
 import {getCollection} from 'astro:content';
 
-import ArticleList from './ArticleList.astro';
+import ArticlesGrid from './ArticlesGrid.astro';
 import ArticleCard from './ArticleCard.astro';
 
 const docs=await getCollection('docs');
 const articles=docs.filter(doc=>doc.data.isArticle);
 ---
 
-<ArticleList>
+<ArticlesGrid>
   {
     articles.map(article=>(
         <ArticleCard
@@ -22,4 +22,4 @@ const articles=docs.filter(doc=>doc.data.isArticle);
       )
     )
   }
-</ArticleList>
+</ArticlesGrid>
