@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+import ArticlesGrid from './ArticlesGrid.astro';
+import ArticleCard from './ArticleCard.astro';
+
+interface Props{
+  articles:CollectionEntry<'docs'>[];
+}
+
+const {articles}=Astro.props;
+---
+
+<ArticlesGrid>
+  {
+    articles.map(article=>(
+        <ArticleCard
+          title={article.data.title}
+          href={'/'+article.id}
+          categories={article.data.categories??[]}
+          thumbnail={article.data.thumbnail?.src??''}
+        >
+          {article.data.description}
+        </ArticleCard>
+      )
+    )
+  }
+</ArticlesGrid>
+

@@ -1,4 +1,6 @@
 ---
+import {Badge} from '@astrojs/starlight/components';
+
 interface Props{
   title:string;
   href:string;
@@ -7,8 +9,6 @@ interface Props{
 }
 
 const {title,href,thumbnail,categories=[]}=Astro.props;
-
-import {Badge} from '@astrojs/starlight/components';
 ---
 
 <a href={href} class="articleCard">
@@ -60,6 +60,7 @@ import {Badge} from '@astrojs/starlight/components';
 .articleCard-badge-list{
   margin-bottom:8px;
   display:flex;
+  flex-wrap:wrap;
   gap:8px;
 }
 
