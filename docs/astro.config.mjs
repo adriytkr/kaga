@@ -16,6 +16,17 @@ export default defineConfig({
 				SocialIcons:'./src/components/layout/GlobalPlugin.astro',
 				Footer:'./src/components/layout/TheFooter.astro',
 			},
+			defaultLocale:'root',
+			locales:{
+				root:{
+					label:'English',
+					lang:'en',
+				},
+				'pt-br':{
+					label:'Português',
+					lang:'pt-br',
+				},
+			},
 			sidebar: [
 				{
 					label:'View all Articles',
