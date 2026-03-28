@@ -8,6 +8,10 @@ sidebar:
 isArticle: true
 ---
 
+import TheoremBox from '@components/article/TheoremBox.astro';
+import CheckpointController from '@components/article/CheckpointController.vue';
+import CheckpointQuestion from '@components/article/CheckpointQuestion.vue';
+
 export const f=(x)=>x+2;
 
 ## Why learn limits?
@@ -22,9 +26,9 @@ $$
 f(x)=x+1
 $$
 
-What happens to $f$ when $x$ approaches $1$? By approaching, I mean choosing $x$ values with $x \neq 1$ such that they are getting closer to $1. For instance,
+What happens to $f$ when $x$ approaches $1$? By approaching, I mean choosing $x$ values with $x \neq 1$ such that they are getting closer to $1$. For instance,
 
-<div class="mt-10 flex flex-col gap-4">
+<div class="flex flex-row gap-4 justify-evenly">
 <div>
 |$x \to 1$|$f(x)$|
 |---|---|
@@ -33,8 +37,7 @@ What happens to $f$ when $x$ approaches $1$? By approaching, I mean choosing $x$
 |1.01|{f(1.01)}|
 |1.001|{f(1.001)}|
 </div>
-
-<div>
+<div class="mt-0">
 |$x \to 1$|$f(x)$|
 |---|---|
 |0.5|{f(0.5)}|
@@ -44,22 +47,240 @@ What happens to $f$ when $x$ approaches $1$? By approaching, I mean choosing $x$
 </div>
 </div>
 
-Now, consider the following function
+Do you notice something? As $x$ gets closer to $1$, $f(x)$ gets closer to $3$. We can express this using the following notation
 
 $$
-g(x)=\frac{x^2-1}{x-1}
+\lim_{x \to 1} f(x) = 3
 $$
 
-## Formal definition of limits
+That is it! Also, don't forget that we can approach $1$ from the left, so we get $f(x)$
+
+$$
+3.5,3.1,3.01,3.001
+$$
+
+we denote this as
+
+$$
+\lim_{x \to 1^-} f(x) = 3
+$$
+
+the minus sign indicates that we are approaching $1$ from the left, that is, $x < 1$.
+
+Similarly, we can approach $1$ from the right, so we get $f(x)$
+
+$$
+2.5,2.9,2.99,2.999
+$$
+
+we denote this as
+
+$$
+\lim_{x \to 1^+} f(x) = 3
+$$
+
+where the plus sign indicates that we are approaching $1$ from the right, that is, $x > 1$.
+
+We can conclude in general that if the left-hand limit and the right-hand limit are equal, then we can say that the limit exists and is equal to that common value. More formally,
+
+<TheoremBox>
+$$
+\lim_{x \to a} f(x) = L \iff \lim_{x \to a^-} f(x) = L \text{ and } \lim_{x \to a^+} f(x) = L
+$$
+</TheoremBox>
 
 ## When the limits breaks
 
+Limits don't always exist. For instance, consider the following function
+
+$$
+f(x) = \begin{cases}
+1 & \text{if } x < 0 \\
+0 & \text{if } x \geq 0
+\end{cases}
+$$
+
+As $x$ approaches $0$ from the left, we have $x < 0$, and according to the definition of $f$, $f(x)=1$ for all $x < 0$. Therefore, we have
+
+$$
+\lim_{x \to 0^-} f(x) = 1
+$$
+
+Similarly, as $x$ approaches $0$ from the right, we have $x \geq 0$, and according to the definition of $f$, $f(x)=0$ for all $x \geq 0$. Therefore, we have
+
+$$
+\lim_{x \to 0^+} f(x) = 0
+$$
+
+The limits aren't equal. So, what does that mean?!
+
+Well, according to the [Introduction](#introduction), for a limit to exist, the left-hand limit and the right-hand limit must be equal. Since, in our particular example, they aren't, that is
+
+$$
+\lim_{x \to 0^-} f(x) \neq \lim_{x \to 0^+} f(x)
+$$
+
+we can conclude that $\lim_{x \to 0} f(x)$ does not exist.
+
+Next, we explore some of the common ways limits can fail to exist.
+
 ### Jump discontinuities
+
+We already explored this one in our previous example. It is called **jump discontinuity**.
+
+A jump discontinuity occurs when the left-hand limit and the right-hand limit exist but are not equal. In such cases, the function abruptly "jumps" from one value to another.
+
+They commonly show up in piecewise functions, where the function is defined differently on different intervals.
 
 ### Infinite oscillations
 
+An infinite oscillation occurs when a function oscillates infinitely many times as it approaches a particular point. In such cases, the limit does not exist because the function does not approach a single value.
+
+Take, for instance, the function
+
+$$
+f(x) = \sin\left(\frac{1}{x}\right)
+$$
+
+As $x$ approaches $0$, the function oscillates infinitely many times between $-1$ and $1$. Therefore, the limit $\lim_{x \to 0} f(x)$ does not exist.
+
 ### Unbounded behavior
 
+An unbounded behavior occurs when a function grows without bound as it approaches a particular point. In such cases, the limit does not exist because the function does not approach a finite value.
+
+Take, for instance, the function
+
+$$
+f(x) = \frac{1}{x}
+$$
+
+As $x$ approaches $0$ from the right, the function grows without bound, and as $x$ approaches $0$ from the left, the function decreases without bound. Therefore, the limit $\lim_{x \to 0} f(x)$ does not exist.
+
+## Formal definition of limits
+
+We were able to understand limits intuitively. However, expressions such as "getting closer to" and "approaching" are very informal. They do work and are already sufficient for most needs.
+
+However, if you want to be more rigorous, we can use the following formal definition of limits so that we precisely define what does it mean to "get closer to" and "approach".
+
+<TheoremBox>
+**Formal definition of limits:** Let $f(x)$ be a function defined on an interval around $a$, except possibly at $a$ itself. Then if
+
+$$
+\lim_{x \to a} f(x) = L
+$$
+
+exists, it means that for every $\epsilon > 0$, there exists a $\delta > 0$ such that
+
+$$
+0 < |x - a| < \delta \implies |f(x) - L| < \epsilon
+$$
+</TheoremBox>
+
+It looks complicated, but it's actually very straighforward. You can think of this as a game:
+
+1. I choose a small number $\epsilon$ that represents how close I want $f(x)$ to be to $L$.
+2. You have to find a small number $\delta$ such that if $x$ is within $\delta$ of $a$, then $f(x)$ is within $\epsilon$ of $L$.
+
 ## Limit Laws
+
+We now know what limits are. However, computing limits from tables can be tedious. Luckily, there are some properties of limits that we can use to compute limits more easily. I'll show a few of them:
+
+Two properties that we will use a lot are the following:
+
+<TheoremBox>
+
+Let $c$ be a constant and $a$ be a real number. Then, we have
+
+$$
+\begin{align}
+
+\lim_{x \to a} c = c \\
+
+\lim_{x \to a} x = a
+
+\end{align}
+$$
+
+</TheoremBox>
+
+These properties are very intuitive.
+
+* Equation (1) states that the limit of a constant function is just that constant. For instance, if $f(x) = 5$ for all $x$, then $\lim_{x \to a} f(x) = 5$ for any $a$.
+
+* Equation (2) states that the limit of the identity function $f(x) = x$ as $x$ approaches $a$ is just $a$. This makes sense because as $x$ gets closer to $a$, $f(x)$ also gets closer to $a$.
+
+Now, we explore some of the most important properties of limits. These laws allow us to compute limits of more complicated functions based on the limits of simpler functions. I'll show a few of them:
+
+<TheoremBox>
+
+**Limit Laws:** Let $f$ and $g$ be functions such that
+
+$$
+\lim_{x \to a} f(x) = L
+\text{ and }
+\lim_{x \to a} g(x) = M
+$$
+
+exist. Then, the following properties hold:
+
+1. **Sum Law:** $\lim_{x \to a} (f(x) + g(x)) = L + M$
+2. **Multiplication Law:** $\lim_{x \to a} (f(x) \cdot g(x)) = L \cdot M$
+
+</TheoremBox>
+
+To practice using these laws, let's 
+
+**Example 1:** Compute $\lim_{x \to 2} (3x^2 + 5)$.
+
+<CheckpointController title="Practice: Compute the limit" totalSteps={2} client:load>
+  <div slot="step-0">
+    <CheckpointQuestion 
+      client:visible 
+      optionCount={3} 
+      correctIndex={0}
+    >
+      <div slot="question">
+        What is the value of $\lim_{x \to 2} (3x - 4)$?
+      </div>
+      <div slot="option-0">
+        It is $2$.
+      </div>
+      <div slot="option-1">
+        It is $0$.
+      </div>
+      <div slot="option-2">
+        The limit does not exist ($\nexists$).
+      </div>
+      <div slot="explanation">
+        By direct substitution: $3(2) - 4 = 6 - 4 = 2$. 
+        Since the function is linear and continuous, the limit is just the function value!
+      </div>
+    </CheckpointQuestion>
+  </div>
+  <div slot="step-1">
+    <CheckpointQuestion 
+      client:visible 
+      optionCount={3} 
+      correctIndex={0}
+    >
+      <div slot="question">
+        What is the value of $\lim_{x \to 2} (3x - 5)$?
+      </div>
+      <div slot="option-0">
+        It is $2$.
+      </div>
+      <div slot="option-1">
+        It is $0$.
+      </div>
+      <div slot="option-2">
+        The limit does not exist ($\nexists$).
+      </div>
+      <div slot="explanation">
+        By direct substitution: $3(2) - 4 = 6 - 4 = 2$. 
+        Since the function is linear and continuous, the limit is just the function value!
+      </div>
+    </CheckpointQuestion>
+  </div>
+</CheckpointController>
 
 ## Connection to derivatives

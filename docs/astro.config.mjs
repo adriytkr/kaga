@@ -98,7 +98,7 @@ export default defineConfig({
                   },
               },
           ],
-          customCss: ['./src/assets/styles/custom.css'],
+          customCss: ['./src/assets/styles/global.css'],
       }),
       vue(),
 	],

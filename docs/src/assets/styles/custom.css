@@ -1,7 +1,0 @@
-@import 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css';
-
-@layer base, starlight, theme, components, utilities;
-
-@import '@astrojs/starlight-tailwind';
-@import 'tailwindcss/theme.css' layer(theme);
-@import 'tailwindcss/utilities.css' layer(utilities);
