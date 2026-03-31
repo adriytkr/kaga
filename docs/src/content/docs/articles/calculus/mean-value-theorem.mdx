@@ -9,156 +9,65 @@ isArticle: true
 isFeatured: true
 ---
 
+import ImageWithCaption from '@components/article/ImageWithCaption.astro';
 import TheoremBox from '@components/article/TheoremBox.astro';
-import LabeledImage from '@components/sections/LabeledImage.astro';
+import Checkpoint from '@components/article/Checkpoint.vue';
 
-import MVTIntro from '@assets/animations/mvt-intro.gif';
+import placeholderImage from '@assets/images/placeholder.webp';
+
+## Pre-requisites
 
 ## Introduction
 
-The Mean Value Theorem is very straightforward. It basically states that there exists at least one tangent line that is parallel to a secant line on an interval.
-
-<LabeledImage src={MVTIntro} alt="Mean Value Theorem Intro Animation">
-The tangent line becomes parallel to the secant line at some point on the curve. 
-</LabeledImage>
-
-In other words, there exists at least one point on the curve where the slope of the tangent line is equal to the slope of the secant line. More formally,
+<ImageWithCaption
+  src={placeholderImage}
+  alt="A random image"
+>
+  This is the caption
+</ImageWithCaption>
 
 <TheoremBox>
-**Mean Value Theorem** If $f$ is continuous on $[a,b]$ and differentiable on $(a,b)$, then
+  **Mean Value Theorem:** Let $f$ be a function continuous on $[a,b]$ and differentiable on $(a,b)$. Then, there exists at least one $c \in (a,b)$ such that
 
-$$
-f'(c)=\frac{f(b)-f(a)}{b-a}
-$$
-
-for some $c$ on $(a,b)$
+  $$
+  f'(c)=\frac{f(b)-f(a)}{b-a}
+  $$
 </TheoremBox>
 
-To prove the Mean Value Theorem, we need to first prove some preliminary theorems.
+<Checkpoint
+  choices-count={4}
+  choices={[0,1]}
+  client:load
+>
+  <Fragment slot="title">Inference: Example</Fragment>
+  <Fragment slot="question">
+    Adaptations to cold temperatures have high metabolic costs. It is expensive, in terms of energy use, for land plants and animals to withstand very cold temperatures, and it gets more expensive the colder it gets, which means that the lower the air temperature, the fewer species have evolved to survive it. This factor, in conjunction with the decline in air temperature with increasing elevation, explains the distribution of species diversity in mountain ecosystems: you find fewer species high up a mountain than at the mountain’s base because ______
 
-The full proof lies at the end of the document for it requires the preliminary theorems to a rigorous proof.
+    Which choice best fits the blank?
+  </Fragment>
+  <Fragment slot="command">
+    Choose all answers that apply
+    {/* <p v-if="choices.length===1">Choose 1 answer</p>
+    <p v-else>Choose all answers that apply</p> */}
+  </Fragment>
+  <Fragment slot="choice-0">
+    there are relatively few environments hospitable to species that are adapted to live in low air temperatures.
+  </Fragment>
+  <Fragment slot="choice-1">
+    there are relatively few species with the adaptations necessary to tolerate the temperatures at high elevations.
+  </Fragment>
+  <Fragment slot="choice-2">
+    adaptations that allow plants and animals to survive in rocky environments are metabolically costly.
+  </Fragment>
+  <Fragment slot="choice-3">
+    some mountain environments are at elevations so high that no plants or animals can survive them.
+  </Fragment>
+</Checkpoint>
 
 ## Fermat's Theorem
 
-<TheoremBox>
-**Fermat's Theorem** Let $f$ be a function on $(a,b)$. If $f$ has a local minimum or local maximum at $c \in (a,b)$, and $f$ is differentiable at $c$, then
-
-$$
-f'(c)=0
-$$
-</TheoremBox>
-
-### Proof
-
-Let $f$ be differentiable at $c$. Without loss of generality, assume f has a local max at $c$. Then $f(c) \ge f(x)$ for all $x$ near $c$.
-
-Since $f$ is differentiable at $c$, the limit
-
-$$
-\lim_{h \to 0}\frac{f(c+h)-f(c)}{h}
-$$
-
-exists. Thus, the right-hand and left-hand limits both exist and equal $f'(c)$. We consider each separately.
-
-For the right-hand side, we have $h>0$ and $f(c+h)-f(c) \le 0$. Hence, we obtain the following inequality
-
-$$
-\begin{equation}
-\lim_{h \to 0^+}\frac{f(c+h)-f(c)}{h} \le 0
-\end{equation}
-$$
-
-Similarly for the left-hand side limit, we obtain
-
-$$
-\begin{equation}
-\lim_{h \to 0^-}\frac{f(c+h)-f(c)}{h} \ge 0
-\end{equation}
-$$
-
-Since the left-hand side and right-hand side are equal, the only possible value is $0$. Thus, we obtain
-
-$$
-\lim_{h \to 0}\frac{f(c+h)-f(c)}{h} = 0
-$$
-
-Therefore, $f'(c)=0$.
-
 ## Extreme Value Theorem
-
-<TheoremBox>
-**Extreme Value Theorem** Let $f$ be a continuous function on $[a,b]$. Then $f$ must attain an absolute maximum and an absolute minimum value at least once on $[a,b]$.
-
-In other words, there exists $c,d \in [a,b]$ such that
-
-$$
-f(c) \le f(x) \le f(d)
-$$
-
-for all $x \in [a,b]$
-</TheoremBox>
-
-### Proof
-
-Under construction
 
 ## Rolle's Theorem
 
-<TheoremBox>
-**Rolle's Theorem** Let $f$ be a function with the following properties:
-
-1. $f$ is continous on $[a,b]$.
-2. $f$ is differentiable on $[a,b]$.
-3. $f(a)=f(b)$.
-
-Then, there exists $c \in [a,b]$ such that
-
-$$
-f'(c)=0
-$$
-</TheoremBox>
-
-### Proof
-
-We can divide the proof into two cases
-
-**Case 1: $f$ is constant**
-
-Then $f'(x)=0$ for all $x$. Hence, there exists at least one $c$ on (a,b) such that $f'(c)=0$.
-
-**Case 2: $f$ is not constant**
-
-Since $f$ is continuous on $[a,b]$, we can apply the Extreme Value Theorem. Since $f(a)=f(b)$ and $f$ is not constant, the maximum and minimum cannot both occur only at the endpoints. Hence, at least one of them must occur at some point on $(a,b)$.
-
-Without loss of generality, assume $f$ attains a minimum at some point $c$ on (a,b). Then, by the Fermat's Theorem, $f'(c)=0$.
-
-## Formal Proof of Mean Value Theorem
-
-Let $f$ be continuous on $[a,b]$ and differentiable on $(a,b)$, and $L$ be the line that passes through the points $(a,f(a))$ and $(b,f(b))$. Then,
-
-$$
-L(x)=\frac{f(b)-f(a)}{b-a}(x-a)+f(a)
-$$
-
-Let $h(x)=f(x)-L(x)$. Then,
-
-$$
-h'(x)=f'(x)-\frac{f(b)-f(a)}{b-a}
-$$
-
-Notice that $h(a)=h(b)$. Hence, we can apply Rolle's Theorem to $h$. Thus, $h'(c)=0$ for some $c$ on $(a,b)$ and we obtain
-
-$$
-\begin{align*}
-h'(c)&=0\\
-&=f'(c)-\frac{f(b)-f(a)}{b-a}
-\end{align*}
-$$
-
-Therefore,
-
-$$
-f'(c)=\frac{f(b)-f(a)}{b-a}
-$$
-
-for some $c$ on $(a,b)$.
+## Proof

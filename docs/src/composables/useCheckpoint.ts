@@ -1,0 +1,61 @@
+import {ref,computed} from 'vue';
+import type { ChoiceStatus } from '@/types/article';
+
+export function useCheckpoint(choices:number[]){
+  const isSubmitted=ref<boolean>(false);
+  const selectedChoices=ref<number[]>([]);
+
+  const emptyState=computed<boolean>(()=>selectedChoices.value.length===0);
+
+  function getStatus(choiceIndex:number):ChoiceStatus{
+    const isSelected=selectedChoices.value.includes(choiceIndex);
+
+    if(!isSubmitted.value)return isSelected?'selected':'default';
+
+    const isCorrect=choices.includes(choiceIndex);
+
+    if(isSelected)return isCorrect?'correct':'incorrect';
+    if(choices.includes(choiceIndex))return'missed';
+
+    return 'default';
+  }
+
+  function selectChoice(choiceIndex:number){
+    if(isSubmitted.value)return;
+
+    const isSelected=selectedChoices.value.includes(choiceIndex);
+
+    if(isSelected){
+      const index=selectedChoices.value.indexOf(choiceIndex);
+      selectedChoices.value.splice(index,1);
+      return;
+    }
+
+    if(choices.length===1){
+      selectedChoices.value[0]=choiceIndex;
+      return;
+    }
+
+    selectedChoices.value.push(choiceIndex);
+  }
+
+  function checkChoices(){
+    if(emptyState.value)return;
+
+    isSubmitted.value=true;
+  }
+
+  function retry(){
+    isSubmitted.value=false;
+    selectedChoices.value=[];
+  }
+
+  return{
+    getStatus,
+    selectChoice,
+    emptyState,
+    isSubmitted,
+    checkChoices,
+    retry,
+  };
+}

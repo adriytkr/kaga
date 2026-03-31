@@ -1,5 +1,5 @@
 ---
-title: Bem vindo à Akagi!
+title: Welcome to Bismarck!
 description: Learn Mathematics, Physics and Computer Science with visual explanations and challenges
 template: splash
 hero:
@@ -12,6 +12,9 @@ hero:
     - text: View on Github
       link: https://github.com/adriytkr/manim-animations
       icon: github
+      variant: minimal
+banner:
+  content: The blog is momentarily incomplete and has limited multilingual support
 ---
 
 import { Icon } from '@astrojs/starlight/components';
@@ -34,12 +37,10 @@ import {
   FeaturedArticles
 } from '@components/landing/';
 
-import VisualIntuitionGIF from '@assets/animations/mvt-intro.gif';
-
 <BaseSection>
-  ## What is Akagi about?
+  ## What is Bismarck about?
 
-  (Just for the sake of curiosity, **Akagi** stands for ???)
+  (Just for the sake of curiosity, **Bismarck** stands for ???)
 
   Most classes, articles and videos **rely on memorization** as their primary instrument for teaching, and I think that is a huge mistake for two main reasons:
 
@@ -62,16 +63,22 @@ import VisualIntuitionGIF from '@assets/animations/mvt-intro.gif';
     The animations were coded using [Manim](https://github.com/manimCommunity/manim) and their source code are available on [Github](https://github.com/adriytkr/manim-animations/tree/main/manim-core) in case you are curious how they were made.
   </Fragment>
   <Fragment slot="second">
-    <LabeledImage src={VisualIntuitionGIF}>
-      Figure 1: Mean Value Theorem video
+    <LabeledImage>
+      ![image](../../assets/images/placeholder.webp)
+      <Fragment slot="caption">
+        Figure 1: Mean Value Theorem video
+      </Fragment>
     </LabeledImage>
   </Fragment>
 </TwoColumnSection>
 
 <TwoColumnSection reverse>
   <Fragment slot="first">
-    <LabeledImage src={VisualIntuitionGIF}>
-      Figure 2: Mean Value Theorem video
+    <LabeledImage>
+      ![image](../../assets/images/placeholder.webp)
+      <Fragment slot="caption">
+        Figure 1: Mean Value Theorem video
+      </Fragment>
     </LabeledImage>
   </Fragment>
   <Fragment slot="second">
