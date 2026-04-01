@@ -33,7 +33,11 @@ export function useCheckpoint(correctChoices:number[]){
     const isCorrect=correctChoices.includes(choiceIndex);
 
     if(isSelected)return isCorrect?'correct':'incorrect';
-    if(correctChoices.includes(choiceIndex))return'missed';
+
+    if(isCorrect){
+      if(correctChoices.length===1)return 'correct';
+      return 'missed';
+    }
 
     return 'default';
   }

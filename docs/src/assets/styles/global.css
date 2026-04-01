@@ -7,9 +7,6 @@
 @import 'tailwindcss/utilities.css' layer(utilities);
 
 @theme {
-  --font-sans: 'Atkinson Hyperlegible';
-  --font-mono: 'IBM Plex Mono';
-
   --color-accent-200: #fcb4a8;
   --color-accent-600: #cb0000;
   --color-accent-900: #640101;
