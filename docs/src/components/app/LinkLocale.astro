@@ -17,8 +17,6 @@ const absoluteHref=Astro.currentLocale==='en'
   ?href
   :`/${Astro.currentLocale}${href}`;
 
-console.log(Astro.currentLocale,pathname);
-
 const isActive=pathname===absoluteHref||pathname===`${absoluteHref}/`;
 ---
 

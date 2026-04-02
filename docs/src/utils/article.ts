@@ -1,4 +1,4 @@
-import type { Heading } from '@types/article';
+import type { Heading, TocItem } from '@types/article';
 import type { GetStaticPaths } from 'astro';
 import {getCollection} from 'astro:content';
 
@@ -17,13 +17,6 @@ export const getArticlePaths=(locale:string)=>(async()=>{
     };
   });
 }) satisfies GetStaticPaths;
-
-export interface TocItem {
-  depth: number;
-  text: string;
-  slug: string;
-  children: TocItem[];
-}
 
 export function buildToc(headings:Heading[]):TocItem[]{
   const toc: TocItem[] = [];

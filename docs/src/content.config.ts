@@ -7,6 +7,8 @@ const articleSchema=z.object({
   description:z.string(),
   longDescription:z.string(),
   thumbnail:z.string(),
+  difficulty:z.enum(['easy','medium','hard']),
+  categories:z.array(z.string()).default([]),
 });
 
 const articlesCollection=defineCollection({

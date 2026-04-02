@@ -1,7 +1,37 @@
 ---
-import CommonLayout from '@layouts/CommonLayout.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SearchableGrid from '@components/article/SearchableGrid.vue';
+import {getArticlesByLocale} from '@utils/content';
+
+import type {FilterLabel} from '@types/article';
+
+const allArticles=await getArticlesByLocale(Astro.currentLocale!);
+
+const uniqueCategories=[
+  ...new Set(allArticles.flatMap((article)=>article.data.categories||[]))
+].sort();
+
+const uniqueDifficulties=['easy','medium','hard'];
+
+const t:FilterLabel={
+  searchPlaceholder:'Pesquisar por nome, palavras-chaves, ...',
+  difficultyTitle:'Escolher dificuldade',
+  categoryTitle:'Escolher categorias',
+  difficulties:{
+    easy:'Fácil',
+    medium:'Médio',
+    hard:'Difícil',
+  },
+  empty:'Nenhum resultado encontrado',
+};
 ---
 
-<CommonLayout title="Artigos">
-  <h1>Artigos</h1>
-</CommonLayout>
+<BaseLayout title="Articles">
+  <SearchableGrid
+    articles={allArticles}
+    categories={uniqueCategories}
+    difficulties={uniqueDifficulties}
+    t={t}
+    client:load
+  />
+</BaseLayout>
