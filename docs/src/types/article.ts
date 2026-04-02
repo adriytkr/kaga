@@ -11,11 +11,11 @@ export type Heading={
   text:string;
 };
 
-export interface TocItem {
-  depth: number;
-  text: string;
-  slug: string;
-  children: TocItem[];
+export interface TocItem{
+  depth:number;
+  text:string;
+  slug:string;
+  children:TocItem[];
 }
 
 export type ArticleDifficulty=
@@ -25,6 +25,7 @@ export type ArticleDifficulty=
 
 export interface ArticleSchema{
   data:{
+    to:string;
     title:string;
     description:string;
     longDescription:string;
@@ -33,16 +34,4 @@ export interface ArticleSchema{
   };
   slug:string;
   [key:string]:any;
-}
-
-export type FilterLabel={
-  searchPlaceholder: string;
-  difficultyTitle: string;
-  categoryTitle: string;
-  difficulties: {
-    easy: string;
-    medium: string;
-    hard: string;
-  },
-  empty:string;
 }

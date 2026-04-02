@@ -3,10 +3,10 @@ import Logo from './Logo.astro';
 import SearchArticle from './SearchArticle.astro';
 import ThemeToggleButton from './ThemeToggleButton.astro';
 
-import LinkLocale from './LinkLocale.astro';
+import LinkLocale from '@components/navigation/LinkLocale.astro';
 ---
 
-<header class="sticky z-50 transition-transform duration-300 ease-in-out top-0 bg-surface">
+<header class="sticky z-50 transition-transform duration-300 ease-in-out top-0 bg-surface [&.scroll-down]:-translate-y-full [&.scroll-up]:translate-y-0">
   <nav class="max-w-4xl mx-auto p-4 flex justify-between items-center">
     <LinkLocale href="/">
       <Logo/>
@@ -20,7 +20,7 @@ import LinkLocale from './LinkLocale.astro';
   </nav>
 </header>
 
-<style>
+<!-- <style>
 header.scroll-down{
   transform:translateY(-100%);
 }
@@ -28,7 +28,7 @@ header.scroll-down{
 header.scroll-up{
   transform:translateY(0);
 }
-</style>
+</style> -->
 
 <script>
   let lastScroll=0;

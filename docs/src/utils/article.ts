@@ -1,8 +1,10 @@
-import type { Heading, TocItem } from '@types/article';
 import type { GetStaticPaths } from 'astro';
 import {getCollection} from 'astro:content';
 
-export const getArticlePaths=(locale:string)=>(async()=>{
+import type { ArticleDifficulty, Heading, TocItem } from '@/types/article';
+import type { Locale } from '@/types/i18n';
+
+export const getArticlePaths=(locale:Locale)=>(async()=>{
   const allArticles=await getCollection('articles');
 
   const prefix=`${locale}/`;
@@ -37,3 +39,9 @@ export function buildToc(headings:Heading[]):TocItem[]{
   });
   return toc;
 }
+
+export const ARTICLE_DIFFICULTIES:ArticleDifficulty[]=[
+  'easy',
+  'medium',
+  'hard',
+];

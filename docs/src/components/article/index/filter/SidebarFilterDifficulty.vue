@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import type { ArticleDifficulty, FilterLabel } from '@types/article';
-import SidebarFilterGroup from './SidebarFilterGroup.vue';
-import SidebarFilterCheckbox from './SidebarFilterCheckbox.vue';
 import { inject } from 'vue';
 
-const props=
-defineProps<{
+import type { ArticleDifficulty } from '@/types/article';
+import type { FilterLabel } from '@/types/t';
+
+import SidebarFilterGroup from './SidebarFilterGroup.vue';
+import SidebarFilterCheckbox from './SidebarFilterCheckbox.vue';
+
+const props=defineProps<{
   difficulties:ArticleDifficulty[];
 }>();
 

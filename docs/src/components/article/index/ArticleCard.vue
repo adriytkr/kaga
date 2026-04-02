@@ -1,21 +1,34 @@
 <script setup lang="ts">
-import placeholderThumbnail from '@assets/images/placeholder.webp';
-import type { ArticleDifficulty, FilterLabel } from '@types/article';
 import { inject } from 'vue';
 
+import placeholderThumbnail from '@assets/images/placeholder.webp';
+
+import type {ArticleDifficulty} from '@/types/article';
+import type {FilterLabel} from '@/types/t';
+import type { Locale } from '@/types/i18n';
+
+import LinkLocale from '@components/navigation/LinkLocale.vue';
+
 defineProps<{
-  thumbnail?:string;
-  alt?:string;
+  to:string;
   title:string;
   description:string;
+  thumbnail?:string;
+  alt?:string;
   difficulty:ArticleDifficulty;
 }>();
 
 const t=inject<FilterLabel>('t')!;
+const locale=inject<Locale>('locale')!;
 </script>
 
 <template>
-  <div class="flex flex-col max-h-80">
+  <LinkLocale
+    class="flex flex-col max-h-80 text-body"
+    :href="`/articles/${to}`"
+    pathname="/articles"
+    :locale="locale"
+  >
     <div class="aspect-video mb-2">
       <img
         :src="thumbnail??placeholderThumbnail.src"
@@ -37,5 +50,5 @@ const t=inject<FilterLabel>('t')!;
     >
       <span>{{ t.difficulties[difficulty] }}</span>
     </div>
-  </div>
+  </LinkLocale>
 </template>

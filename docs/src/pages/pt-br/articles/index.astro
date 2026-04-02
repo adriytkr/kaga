@@ -1,28 +1,39 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
-import SearchableGrid from '@components/article/SearchableGrid.vue';
+import type {ArticleDifficulty} from '@/types/article';
+import type {FilterLabel} from '@/types/t';
+
 import {getArticlesByLocale} from '@utils/content';
+import {convertStringToLocale} from '@utils/i18n';
 
-import type {FilterLabel} from '@types/article';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SearchableGrid from '@components/article/index/SearchableGrid.vue';
 
-const allArticles=await getArticlesByLocale(Astro.currentLocale!);
+const allArticles=await getArticlesByLocale(
+  convertStringToLocale(Astro.currentLocale??'')??'en'
+);
 
 const uniqueCategories=[
-  ...new Set(allArticles.flatMap((article)=>article.data.categories||[]))
-].sort();
+  ...new Set(
+    allArticles.flatMap((article)=>
+      article.data.categories||[]
+    )
+  )
+]
 
-const uniqueDifficulties=['easy','medium','hard'];
+uniqueCategories.sort();
+
+const uniqueDifficulties:ArticleDifficulty[]=['easy','medium','hard'];
 
 const t:FilterLabel={
-  searchPlaceholder:'Pesquisar por nome, palavras-chaves, ...',
-  difficultyTitle:'Escolher dificuldade',
-  categoryTitle:'Escolher categorias',
+  searchPlaceholder:'Search name, keywords, ...',
+  difficultyTitle:'Choose difficulty',
+  categoryTitle:'Choose categories',
   difficulties:{
-    easy:'Fácil',
-    medium:'Médio',
-    hard:'Difícil',
+    easy:'Easy',
+    medium:'Medium',
+    hard:'Hard',
   },
-  empty:'Nenhum resultado encontrado',
+  empty:'No results found',
 };
 ---
 
@@ -32,6 +43,7 @@ const t:FilterLabel={
     categories={uniqueCategories}
     difficulties={uniqueDifficulties}
     t={t}
+    locale="pt-br"
     client:load
   />
 </BaseLayout>

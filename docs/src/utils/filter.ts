@@ -1,4 +1,4 @@
-import type { ArticleDifficulty, ArticleSchema } from '@types/article';
+import type { ArticleDifficulty, ArticleSchema } from '@/types/article';
 
 export function checkArticleMatch(
   article:ArticleSchema,
@@ -28,5 +28,10 @@ export function checkArticleMatch(
     difficulties.length===0||
     difficulties.some(difficulty=>article.data.difficulty===difficulty);
 
-  return (matchesTitle||matchesDescription)&&matchesDifficulty&&matchesCategory;
+  const matchesFlag=
+    (matchesTitle||matchesDescription)&&
+    matchesDifficulty&&
+    matchesCategory;
+
+  return matchesFlag;
 }

@@ -1,17 +1,26 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
-import SearchableGrid from '@components/article/SearchableGrid.vue';
+import type {FilterLabel} from '@/types/t';
+
 import {getArticlesByLocale} from '@utils/content';
+import {convertStringToLocale} from '@utils/i18n';
+import { ARTICLE_DIFFICULTIES } from '@utils/article';
 
-import type {FilterLabel} from '@types/article';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SearchableGrid from '@components/article/index/SearchableGrid.vue';
 
-const allArticles=await getArticlesByLocale(Astro.currentLocale!);
+const allArticles=await getArticlesByLocale(
+  convertStringToLocale(Astro.currentLocale??'')??'en'
+);
 
 const uniqueCategories=[
-  ...new Set(allArticles.flatMap((article)=>article.data.categories||[]))
-].sort();
+  ...new Set(
+    allArticles.flatMap((article)=>
+      article.data.categories||[]
+    )
+  )
+]
 
-const uniqueDifficulties=['easy','medium','hard'];
+uniqueCategories.sort();
 
 const t:FilterLabel={
   searchPlaceholder:'Search name, keywords, ...',
@@ -30,8 +39,9 @@ const t:FilterLabel={
   <SearchableGrid
     articles={allArticles}
     categories={uniqueCategories}
-    difficulties={uniqueDifficulties}
+    difficulties={ARTICLE_DIFFICULTIES}
     t={t}
+    locale="en"
     client:load
   />
 </BaseLayout>

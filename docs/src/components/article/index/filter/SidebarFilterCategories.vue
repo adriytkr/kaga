@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import { inject } from 'vue';
+
+import type { FilterLabel } from '@/types/t';
+
 import SidebarFilterGroup from './SidebarFilterGroup.vue';
 import SidebarFilterCheckbox from './SidebarFilterCheckbox.vue';
-import { inject } from 'vue';
-import type { FilterLabel } from '@types/article';
 
 defineProps<{
   categories:string[];

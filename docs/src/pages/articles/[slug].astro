@@ -1,8 +1,9 @@
 ---
 import { render } from 'astro:content';
 
-import ArticleLayout from '@layouts/ArticleLayout.astro';
 import {getArticlePaths} from '@utils/article';
+
+import ArticleLayout from '@layouts/ArticleLayout.astro';
 
 export const getStaticPaths=getArticlePaths('en');
 
