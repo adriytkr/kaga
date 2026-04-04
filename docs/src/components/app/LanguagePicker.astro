@@ -1,7 +1,53 @@
 ---
-
+import LanguagePickerButton from './LanguagePickerButton.astro';
 ---
 
-<div>
-  <button>English</button>
+<div class="relative">
+  <button data-select-language-btn>English</button>
+  <div
+    data-select-language-wrapper
+    class="absolute right-0 top-full mt-2 bg-surface shadow-xl rounded-sm overflow-hidden opacity-0 pointer-events-none transition-opacity duration-200 [&.is-open]:opacity-100 [&.is-open]:pointer-events-auto"
+  >
+    <LanguagePickerButton locale="en">
+      English
+    </LanguagePickerButton>
+    <LanguagePickerButton locale="pt-br">
+      Português
+    </LanguagePickerButton>
+  </div>
 </div>
+
+<script>
+const selectLanguageWrapperEl=document.querySelector('[data-select-language-wrapper]');
+const selectLanguageBtn=document.querySelector('[data-select-language-btn]') as HTMLButtonElement;
+
+const toggleMenu=show=>{
+  selectLanguageWrapperEl?.classList.toggle('is-open',show);
+};
+
+function handleClick(e){
+  e.stopPropagation();
+  const isOpen=selectLanguageWrapperEl?.classList.contains('is-open');
+  toggleMenu(!isOpen);
+}
+
+selectLanguageBtn?.addEventListener('click',handleClick);
+
+window.addEventListener('click',e=>{
+  if (!selectLanguageWrapperEl?.contains(e.target as Node))
+    toggleMenu(false);
+});
+
+window.addEventListener(
+  'scroll',
+  _=>{
+    if(selectLanguageWrapperEl?.classList.contains('is-open'))
+      toggleMenu(false);
+  },
+  { passive: true }
+);
+
+window.addEventListener('keydown',e=>{
+  if(e.key==='Escape')toggleMenu(false);
+});
+</script>

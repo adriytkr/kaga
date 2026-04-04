@@ -2,19 +2,23 @@
 import type { HTMLAttributes } from 'astro/types';
 import { getAbsoluteLocaleUrl } from 'astro:i18n';
 
+import type { Locale } from '@/types/i18n';
+
 interface Props extends HTMLAttributes<'a'>{
   href:string;
+  activeClass?:string;
+  locale?:Locale;
 }
 
 const {
   href,
   class:className,
+  activeClass='',
+  locale=Astro.currentLocale,
   ...props
 }=Astro.props;
 
 const { pathname } = Astro.url;
-
-const locale=Astro.currentLocale;
 
 let absoluteUrl:string|undefined=undefined;
 
@@ -29,7 +33,8 @@ const isActive=
   href={absoluteUrl}
   class:list={[
     className,
-    {'is-active':isActive},
+    'inline-block',
+    {[`is-active ${activeClass}`]:isActive},
   ]} 
   aria-current={isActive?'page':undefined}
   {...props}

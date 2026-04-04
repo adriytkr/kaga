@@ -1,0 +1,37 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+import type { Locale } from '@/types/i18n';
+
+import LinkLocale from './LinkLocale.astro';
+
+interface Props extends HTMLAttributes<'a'>{
+  locale:Locale;
+}
+
+const {
+  class:className,
+  locale,
+  ...props
+}=Astro.props;
+
+const cleanPath=Astro.url.pathname.replace(/^\/[a-z]{2}-[a-z]{2}\//, "/");
+
+const sanitizedUrl=
+  Astro.currentLocale==='en'
+  ?Astro.url.pathname
+  :cleanPath;
+---
+
+<LinkLocale
+  href={sanitizedUrl}
+  class:list={[
+    'px-6 py-2 text-muted block! transition-colors duration-200 hover:text-body hover:no-underline hover:bg-white',
+    className,
+  ]}
+  activeClass="font-bold !text-body"
+  locale={locale}
+  {...props}
+>
+  <slot></slot>
+</LinkLocale>
