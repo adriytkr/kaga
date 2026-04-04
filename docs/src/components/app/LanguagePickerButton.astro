@@ -2,6 +2,7 @@
 import type { HTMLAttributes } from 'astro/types';
 
 import type { Locale } from '@/types/i18n';
+import { getAbsoluteUrlWithoutLocale } from '@/utils/i18n';
 
 import LinkLocale from './LinkLocale.astro';
 
@@ -15,12 +16,10 @@ const {
   ...props
 }=Astro.props;
 
-const cleanPath=Astro.url.pathname.replace(/^\/[a-z]{2}-[a-z]{2}\//, "/");
-
-const sanitizedUrl=
-  Astro.currentLocale==='en'
-  ?Astro.url.pathname
-  :cleanPath;
+const sanitizedUrl=getAbsoluteUrlWithoutLocale(
+  Astro.currentLocale as Locale,
+  Astro.url.pathname,
+);
 ---
 
 <LinkLocale
@@ -31,6 +30,7 @@ const sanitizedUrl=
   ]}
   activeClass="font-bold !text-body"
   locale={locale}
+  isActive={locale===Astro.currentLocale}
   {...props}
 >
   <slot></slot>

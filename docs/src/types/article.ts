@@ -28,3 +28,12 @@ export interface SearchFilter{
 }
 
 export type ArticleTagList=Record<ArticleTagType,string>;
+
+export type ChoiceState=
+  |'idle'
+  |'selected'
+  |'correct'
+  |'incorrect'
+  |'missed'
+  |'hidden'
+  |'disabled';

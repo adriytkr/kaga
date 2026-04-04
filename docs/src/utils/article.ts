@@ -1,24 +1,42 @@
-import type { GetStaticPaths } from 'astro';
-import {getCollection} from 'astro:content';
+import type {
+  ArticleTagType,
+  Heading,
+  TocItem,
+} from '@/types/article';
 
-import type { Heading, TocItem } from '@/types/article';
-import type { Locale } from '@/types/i18n';
+import type { ArticleSchema } from '@/types/article';
 
-export const getArticlePaths=(locale:Locale)=>(async()=>{
-  const allArticles=await getCollection('articles');
+export function checkArticleMatch(
+  article:ArticleSchema,
+  query:string,
+  tags:ArticleTagType[],
+):boolean{
+  const normalizedQuery=query.toLowerCase();
 
-  const prefix=`${locale}/`;
-  const localizedArticles=allArticles.filter(entry=>entry.id.startsWith(prefix));
+  const matchesTitle=article.data.title
+    .toLowerCase()
+    .includes(normalizedQuery);
 
-  return localizedArticles.map(entry=>{
-    const slug=entry.id.replace(prefix,'');
+  const matchesDescription=
+    article.data.description
+      .toLowerCase()
+      .includes(normalizedQuery);
 
-    return{
-      params:{slug},
-      props:{entry},
-    };
-  });
-}) satisfies GetStaticPaths;
+  const matchesQuery=matchesTitle||matchesDescription;
+
+  const matchesTag=
+    tags.length===0||
+    tags.some(tag=>article.data.tags.includes(tag));
+
+  const matchesFlag=
+    matchesQuery&&
+    matchesTag;
+
+  return matchesFlag;
+}
+
+export const idToSlug=(id:string):string=>
+  id.split('/').pop()??'';
 
 export function buildToc(headings:Heading[]):TocItem[]{
   const toc:TocItem[]=[];

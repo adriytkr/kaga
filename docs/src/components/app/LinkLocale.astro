@@ -8,6 +8,7 @@ interface Props extends HTMLAttributes<'a'>{
   href:string;
   activeClass?:string;
   locale?:Locale;
+  isActive?:boolean;
 }
 
 const {
@@ -15,6 +16,7 @@ const {
   class:className,
   activeClass='',
   locale=Astro.currentLocale,
+  isActive,
   ...props
 }=Astro.props;
 
@@ -24,9 +26,12 @@ let absoluteUrl:string|undefined=undefined;
 
 if(locale)absoluteUrl=getAbsoluteLocaleUrl(locale,href);
 
-const isActive=
-  absoluteUrl!==undefined&&
-  pathname===absoluteUrl
+const isActive2=
+  isActive||
+  (
+    absoluteUrl!==undefined&&
+    pathname===absoluteUrl
+  )
 ---
 
 <a 
@@ -34,7 +39,7 @@ const isActive=
   class:list={[
     className,
     'inline-block',
-    {[`is-active ${activeClass}`]:isActive},
+    {[`is-active ${activeClass}`]:isActive2},
   ]} 
   aria-current={isActive?'page':undefined}
   {...props}

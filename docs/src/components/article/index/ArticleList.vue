@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { ArticleSchema } from '@/types/article';
 import type { Locale } from '@/types/i18n';
-import {getAbsoluteUrlByLocale} from '@/utils/i18n';
+import {makeLocalizedUrl} from '@/utils/i18n';
+import {idToSlug} from '@/utils/article';
 
 import ArticleCard from './ArticleCard.vue';
 
@@ -9,9 +10,6 @@ defineProps<{
   articles:ArticleSchema[];
   locale:Locale;
 }>();
-
-const idToSlug=(id:string):string=>
-  id.split('/').pop()??'';
 </script>
 
 <template>
@@ -19,7 +17,10 @@ const idToSlug=(id:string):string=>
     <ArticleCard
       v-for="article in articles"
       :key="article.id"
-      :href="getAbsoluteUrlByLocale(locale,`articles/${idToSlug(article.id)}`)"
+      :href="makeLocalizedUrl(
+        locale,
+        `/articles/${idToSlug(article.id)}`
+      )"
       :title="article.data.title"
       :description="article.data.description"
       :tags="article.data.tags"

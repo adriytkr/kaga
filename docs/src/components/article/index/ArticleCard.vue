@@ -11,7 +11,7 @@ import placeholderThumbnail from '@assets/images/placeholder.webp';
 
 import ArticleTag from './ArticleTag.vue';
 
-defineProps<{
+const props=defineProps<{
   href:string;
   title:string;
   description:string;

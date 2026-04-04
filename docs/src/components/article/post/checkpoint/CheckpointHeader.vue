@@ -9,12 +9,12 @@ defineEmits<{
 </script>
 
 <template>
-  <div class="flex justify-between items-center">
-    <span class="text-gray-500 dark:text-gray-400">
+  <div class="not-prose flex justify-between items-center">
+    <span class="text-muted text-sm">
       <slot></slot>
     </span>
     <button
-      class="bg-transparent cursor-pointer p-1 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+      class="bg-transparent p-1 text-muted hover:text-body transition-colors duration-200"
       @click="$emit('toggle-fullscreen')"
     >
       <!-- Enter Full Screen Icon -->

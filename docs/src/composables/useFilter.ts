@@ -1,7 +1,7 @@
 import { ref, computed } from 'vue';
 
 import type { ArticleSchema } from '@/types/article';
-import { checkArticleMatch } from '@utils/filter';
+import { checkArticleMatch } from '@/utils/article';
 
 export function useFilter(initialArticles:ArticleSchema[]){
   const searchQuery=ref('');

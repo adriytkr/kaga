@@ -1,6 +1,8 @@
 ---
 import { YouTube } from '@astro-community/astro-embed-youtube';
 
+import MediaWithCaption from './MediaWithCaption.astro';
+
 interface Props{
   id:string;
   title:string;
@@ -9,16 +11,14 @@ interface Props{
 const {id,title}=Astro.props;
 ---
 
-<figure>
-  <div class="rounded-sm overflow-hidden">
+<MediaWithCaption>
+  <Fragment slot="media">
     <YouTube
       id={id}
       title={title}
       params="vq=hd720"
-      class="min-w-full w-full"
+      class="w-full h-auto rounded-sm"
     />
-  </div>
-  <figcaption class="mt-2 text-center text-gray-500 dark:text-gray-400">
-    <slot></slot>
-  </figcaption>
-</figure>
+  </Fragment>
+  <slot></slot>
+</MediaWithCaption>
