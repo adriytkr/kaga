@@ -1,12 +1,14 @@
-// https://vitepress.dev/guide/custom-theme
-import Layout from './Layout.vue'
-import type { Theme } from 'vitepress'
-import './style.css'
+import type { Theme } from 'vitepress';
+
+import './assets/styles/main.css';
+
+import Layout from './layouts/Layout.vue';
+import VpLink from './components/app/VpLink.vue';
 
 export default {
   Layout,
-  enhanceApp({ app, router, siteData }) {
-    // ...
-  }
+  enhanceApp({ app, router, siteData }){
+    app.component('VpLink',VpLink)
+  },
 } satisfies Theme
 
