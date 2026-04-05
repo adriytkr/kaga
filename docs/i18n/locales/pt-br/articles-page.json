@@ -1,0 +1,9 @@
+{
+  "articlesPage":{
+    "filter":{
+      "placeholder":"Pesquisar artigos por título, palavras-chaves, ...",
+      "matches":"Nenhum resultado para \"{query}\"|Um resultado para \"{query}\"|{count} resultados para \"{query}\"",
+      "clear":"Limpar Pesquisa"
+    }
+  }
+}
