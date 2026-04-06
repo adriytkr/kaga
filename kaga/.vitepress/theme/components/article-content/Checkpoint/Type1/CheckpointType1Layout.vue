@@ -24,15 +24,6 @@ const context=inject(CheckpointType1ContextKey,null);
 
 if(context===null)
   throw Error('No context provided');
-
-function getChoiceStatus(index:number):ChoiceStatus{
-  if(context===null)return 'idle';
-
-  const isSelected=context?.selectedChoices.value.includes(index);
-  if(isSelected)return 'selected';
-
-  return 'idle';
-}
 </script>
 
 <template>
@@ -55,8 +46,7 @@ function getChoiceStatus(index:number):ChoiceStatus{
         <CheckpointChoice
           v-for="i in choicesCount"
           :key="i"
-          :status="getChoiceStatus(i-1)"
-          :disabled="context.isLocked.value"
+          :status="context.getChoiceStatus(i-1)"
           @click="context.selectChoice(i-1)"
         >
           <slot :name="`choice-${i-1}`"></slot>

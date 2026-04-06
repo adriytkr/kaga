@@ -12,6 +12,9 @@ defineProps<{
     :class="{
       'bg-slate-200':status==='idle',
       'bg-slate-200 border-surface-border!':status==='selected',
+      'bg-green-50 border-green-500!':status==='correct',
+      'bg-red-50 border-red-500!':status==='incorrect',
+      'bg-yellow-50 border-yellow-500!':status==='missed',
     }"
   >
     <slot></slot>

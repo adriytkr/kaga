@@ -21,8 +21,11 @@ const {
   check,
   reset,
   reveal,
-  isLocked,
-}=useCheckpointType1(props.correctChoice);
+  getChoiceStatus,
+}=useCheckpointType1(
+  [props.correctChoice],
+  1,
+);
 
 const context:CheckpointType1Context={
   selectedChoices,
@@ -30,7 +33,7 @@ const context:CheckpointType1Context={
   check,
   reset,
   reveal,
-  isLocked,
+  getChoiceStatus,
 };
 
 provide(CheckpointType1ContextKey,context);
