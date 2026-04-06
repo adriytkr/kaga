@@ -1,9 +1,0 @@
-{
-  "articlesPage":{
-    "filter":{
-      "placeholder":"Search articles by title, keywords, ...",
-      "matches":"No matches for \"{query}\"|One match for \"{query}\"|{count} matches for \"{query}\"",
-      "clear":"Clear Search"
-    }
-  }
-}

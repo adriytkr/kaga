@@ -1,4 +1,5 @@
 ---
+layout: article
 title: Mean Value Theorem
 description: Why your instantaneous speed must eventually match your average speed.
 tags:
@@ -7,3 +8,5 @@ featured: true
 ---
 
 # Mean Value Theorem
+
+Test

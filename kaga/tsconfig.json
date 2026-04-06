@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "~/*": ["./.vitepress/theme/*"],
+    }
+  },
+  "include": ["./.vitepress/theme/**/*.{vue}"],
+  "exclude": ["node_modules", "dist"]
+}

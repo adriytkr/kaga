@@ -37,9 +37,15 @@ export default defineConfig({
       alias:{
         '~':path.resolve(__dirname,'./theme'),
         '~~':path.resolve(__dirname,'..'),
+        '~content':path.resolve(__dirname,'..','content'),
       },
     },
     publicDir:path.resolve(__dirname,'..','public'),
   },
   cleanUrls:true,
+  markdown:{
+    toc:{
+      level:[2,3,4],
+    },
+  },
 })
