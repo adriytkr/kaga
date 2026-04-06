@@ -1,33 +1,43 @@
 <script setup lang="ts">
-import { useCheckpointType1Single } from '~/composables/checkpoint/useCheckpointType1Single';
-import CheckpointType1 from './CheckpointType1.vue';
-import { inject } from 'vue';
+import { provide } from 'vue';
 
-defineProps<{
+import { useCheckpointType1 } from '~/composables/checkpoint/useCheckpointType1';
+
+import {
+  CheckpointType1Context,
+  CheckpointType1ContextKey,
+} from '~/types/articles/checkpoint-type1';
+
+import CheckpointType1Layout from './CheckpointType1Layout.vue';
+
+const props=defineProps<{
   choicesCount:number;
   correctChoice:number;
 }>();
 
 const {
+  selectedChoices,
+  selectChoice,
   check,
   reset,
   reveal,
-}=useCheckpointType1Single();
+  isLocked,
+}=useCheckpointType1(props.correctChoice);
 
-const x=inject<number>('x');
+const context:CheckpointType1Context={
+  selectedChoices,
+  selectChoice,
+  check,
+  reset,
+  reveal,
+  isLocked,
+};
 
-console.log(x);
+provide(CheckpointType1ContextKey,context);
 </script>
 
 <template>
-  <CheckpointType1
-    :choices-count="choicesCount"
-    :correct-choices="[correctChoice]"
-    :max="1"
-    @check="check"
-    @reset="reset"
-    @reveal="reveal"
-  >
+  <CheckpointType1Layout :choicesCount="choicesCount">
     <template #title>
       <slot name="title"></slot>
     </template>
@@ -40,9 +50,12 @@ console.log(x);
     <template
       v-for="i in choicesCount"
       :key="i"
-      #[`choice-${i}`]
+      #[`choice-${i-1}`]
     >
-      <slot :name="`choice-${i}`"></slot>
+      <slot :name="`choice-${i-1}`"></slot>
     </template>
-  </CheckpointType1>
+    <template #explanation>
+      <slot name="explanation"></slot>
+    </template>
+  </CheckpointType1Layout>
 </template>

@@ -16,10 +16,7 @@ import YoutubeVideo from './components/article-content/Media/YoutubeVideo.vue';
 import AccordionBase from './components/article-content/Accordion/AccordionBase.vue';
 import AccordionCommon from './components/article-content/Accordion/AccordionCommon.vue';
 
-import CheckpointType1 from './components/article-content/Checkpoint/Type1/CheckpointType1.vue';
-import CheckpointChoice from './components/article-content/Checkpoint/Type1/CheckpointChoice.vue';
-
-import CheckpointType1Single from './components/article-content/Checkpoint/Type1/CheckpointType1Single.vue';
+import CheckpointType1Single from './components/article-content/Checkpoint/type1/CheckpointType1Single.vue';
 
 import CheckpointType2 from './components/article-content/Checkpoint/Type2/CheckpointType2.vue';
 import CheckpointBlank from './components/article-content/Checkpoint/Type2/CheckpointBlank.vue';
@@ -41,8 +38,6 @@ export default {
     app.component('AccordionBase',AccordionBase);
     app.component('AccordionCommon',AccordionCommon);
 
-    app.component('CheckpointType1',CheckpointType1);
-    app.component('CheckpointChoice',CheckpointChoice);
     app.component('CheckpointType1Single',CheckpointType1Single);
 
     app.component('CheckpointType2',CheckpointType2);

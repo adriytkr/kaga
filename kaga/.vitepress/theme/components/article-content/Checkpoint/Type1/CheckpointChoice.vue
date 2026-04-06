@@ -1,25 +1,20 @@
 <script setup lang="ts">
-import type { ChoiceState } from '~/types/articles/article';
+import { ChoiceStatus } from '~/types/articles/checkpoint-type1';
 
 defineProps<{
-  state:ChoiceState;
+  status:ChoiceStatus;
 }>();
 </script>
 
 <template>
   <button
-    class="px-3 py-1 rounded-sm text-left bg-slate-100 border border-transparent [&>astro-slot>*:first-child]:mt-0 [&>astro-slot>*:last-child]:mb-0"
+    class="block w-full text-left px-4 py-2 rounded-sm border border-transparent"
     :class="{
-      '1':state==='idle',
-      '2':state==='selected',
-      '3':state==='correct',
-      '4':state==='incorrect',
-      '5':state==='missed',
-      '6':state==='hidden',
-      '7':state==='disabled',
+      'bg-slate-200':status==='idle',
+      'bg-slate-200 border-surface-border!':status==='selected',
     }"
   >
-    {{ state }}
     <slot></slot>
+    {{ status }}
   </button>
 </template>

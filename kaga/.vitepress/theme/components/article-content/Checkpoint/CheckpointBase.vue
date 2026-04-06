@@ -1,8 +1,15 @@
 <script setup lang="ts">
 import {useFullScreen} from '~/composables/useFullScreen';
 
+import AppButton from '~/components/app/AppButton.vue';
 import CheckpointHeader from './CheckpointHeader.vue';
-import CheckpointActions from './CheckpointActions.vue';
+import AccordionCommon from '../Accordion/AccordionCommon.vue';
+
+defineEmits<{
+  (e:'check'):void;
+  (e:'reset'):void;
+  (e:'reveal'):void;
+}>();
 
 const { isFullScreen }=useFullScreen();
 </script>
@@ -24,9 +31,17 @@ const { isFullScreen }=useFullScreen();
       <div class="my-4">
         <slot name="body"></slot>
       </div>
-      <CheckpointActions>
-        <slot name="actions"></slot>
-      </CheckpointActions>
+      <div class="flex gap-x-4">
+        <AppButton @click="$emit('check')">Check</AppButton>
+        <AppButton @click="$emit('reset')">Reset</AppButton>
+        <AppButton @click="$emit('reveal')">Reveal</AppButton>
+      </div>
+      <AccordionCommon>
+        <template #label>
+          Show solution
+        </template>
+        <slot name="explanation"></slot>
+      </AccordionCommon>
     </div>
   </Teleport>
 </template>

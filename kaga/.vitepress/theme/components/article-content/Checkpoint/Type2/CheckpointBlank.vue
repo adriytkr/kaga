@@ -2,7 +2,7 @@
 import type {
   FormState,
   validationState
-} from '~/types/articles/article';
+} from '~/types/articles';
 
 import {computed,inject} from 'vue';
 

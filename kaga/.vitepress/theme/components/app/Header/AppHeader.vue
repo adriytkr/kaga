@@ -7,7 +7,10 @@ import type { Locale } from '~/i18n';
 import { useHideOnScroll } from '~/composables/useHideOnScroll';
 
 import AppLogo from '~icons/LogoIcon.vue';
+
 import SearchArticle from './SearchArticle.vue';
+import QuickReference from './QuickReference.vue';
+
 import LanguagePicker from './LanguagePicker.vue';
 import ThemeToggleButton from './ThemeToggleButton.vue';
 
@@ -33,6 +36,7 @@ const t:TNavSchema=tNav[lang.value as Locale];
             {{ t.articles }}
           </VpLink>
           <SearchArticle/>
+          <QuickReference/>
         </div>
         <div class="h-5 w-0.5 mx-4 bg-slate-200"></div>
         <div class="flex items-center gap-x-4">

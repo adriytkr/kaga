@@ -2,7 +2,7 @@
 import type { Schema } from '~/types/articles';
 import {useCheckpointType2} from '~/composables/checkpoint/useCheckpointType2';
 
-import CommonCheckpoint from '../CheckpointCommon.vue';
+import CheckpointBase from '../CheckpointBase.vue';
 
 const props= defineProps<{
   schema:Schema;
@@ -16,7 +16,7 @@ const {
 </script>
 
 <template>
-  <CommonCheckpoint
+  <CheckpointBase
     @check="checkAnswers"
     @reset="reset"
     @reveal-answers="revealAnswers"
@@ -24,8 +24,13 @@ const {
     <template #title>
       <slot name="title"></slot>
     </template>
-    <template #body :state="formState">
+    <template #body>
       <slot name="body"></slot>
     </template>
-  </CommonCheckpoint>
+    <template #actions>
+      <AppButton @click="$emit('check')">Check</AppButton>
+      <AppButton @click="$emit('reset')">Reset</AppButton>
+      <AppButton @click="$emit('reveal')">Reveal</AppButton>
+    </template>
+  </CheckpointBase>
 </template>
