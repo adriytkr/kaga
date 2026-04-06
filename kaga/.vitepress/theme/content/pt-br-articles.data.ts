@@ -1,6 +1,6 @@
 import { createContentLoader } from 'vitepress';
 
-import { Article } from '~/types/article';
+import { Article } from '~/types/articles/article';
 
 const formatURL=(url:string):string=>
   url.split('/').pop()?.replace('.html','')??'';

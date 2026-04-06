@@ -3,7 +3,8 @@
     "paths": {
       "~/*": ["./.vitepress/theme/*"],
       "~~/*": ["./*"],
-      "~content/*": ["./content/*"]
+      "~content/*": ["./content/*"],
+      "~icons/*": ["./.vitepress/theme/components/icons/*"],
     }
   },
   "include":[

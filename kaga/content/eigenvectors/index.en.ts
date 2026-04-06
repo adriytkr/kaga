@@ -1,4 +1,4 @@
-import { Type2Select } from '~/types/checkpoint-type2';
+import { Type2Select } from '~/types/articles/checkpoint-type2';
 import { RubyNickname } from '.';
 
 export const rubyNickname:Type2Select<RubyNickname>=[

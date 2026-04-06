@@ -3,15 +3,32 @@ layout: normal
 ---
 
 <script setup lang="ts">
-import LandingHero from '~/components/landing/Hero.vue';
 import LandingSection from '~/components/landing/Section.vue';
+import BrowserIcon from '~/components/icons/BrowserIcon.vue';
 
-import ArticleList from '~/components/article/List.vue';
+import ArticleList from '~/components/articles/ArticleList.vue';
 
 import { data as articles } from '~/content/pt-br-articles.data.ts';
 </script>
 
-<LandingHero/>
+<LandingSection>
+  <div class="px-0 text-center md:px-32">
+    <h1 class="mb-2 text-4xl font-bold">Bem vindo à Kaga</h1>
+    <p class="mb-6 italic text-sm text-muted font-medium">
+      (Knowledge Arises from Geometry and Algorithms)
+    </p>
+    <p class="mb-8 leading-relaxed">
+      Kaga isn't your run-of-the-mill blog. I show how things actually work under the hood. By prioritizing <strong>intuition over memorization</strong> and using clever analogies, I make hard topics feel <strong>obvious and intuitive</strong>.
+    </p>
+    <VpLink
+      to="/articles"
+      class="inline-flex gap-x-2 items-center bg-primary/80 px-6 py-3 text-white font-bold rounded-lg transition-colors duration-200 hover:no-underline hover:bg-primary"
+    >
+      <BrowserIcon/>
+      Browse Articles
+    </VpLink>
+  </div>
+</LandingSection>
 
 <LandingSection title="Featured Articles">
   <ArticleList

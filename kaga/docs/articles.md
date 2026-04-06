@@ -5,14 +5,13 @@ layout: normal
 <script setup lang="ts">
 import { nextTick, ref } from 'vue';
 
-import type { SearchFilter } from '~/types/article';
+import type { SearchFilter } from '~/types/articles/article';
 import {useFilter} from '~/composables/useFilter';
 
-import {enFilterT} from '~/i18n/locales/en/filter';
+import ArticleSearch from '~/components/articles/ArticleSearch.vue';
+import ArticleList from '~/components/articles/ArticleList.vue';
 
-import ArticleSearch from '~/components/article/Search.vue';
-import ArticleList from '~/components/article/List.vue';
-
+import {filter} from '~/i18n/locales/en/filter';
 import { data as articles } from '~/content/en-articles.data.ts';
 
 const {
@@ -39,7 +38,7 @@ async function clearSearch(){
   </div>
   <div v-if="matchesFound>0">
     <p class="mb-4" v-if="searchQuery.trim().length>0">
-      {{enFilterT.matches(matchesFound,searchQuery)}}
+      {{filter.matches(matchesFound,searchQuery)}}
     </p>
     <ArticleList :articles="filteredArticles"/>
   </div>
@@ -48,13 +47,13 @@ async function clearSearch(){
     class="flex-1 flex flex-col items-center justify-center"
   >
     <p class="mb-2">
-      {{enFilterT.matches(0,searchQuery)}}
+      {{filter.matches(0,searchQuery)}}
     </p>
     <button
       class="text-primary hover:underline"
       @click="clearSearch"
     >
-      {{enFilterT.clear}}
+      {{filter.clear}}
     </button>
   </div>
 </div>

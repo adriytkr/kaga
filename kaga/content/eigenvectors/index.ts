@@ -1,4 +1,4 @@
-import type {Schema,CheckpointType2Field} from '~/types/checkpoint-type2';
+import type {Schema,CheckpointType2Field} from '~/types/articles/checkpoint-type2';
 
 export type RubyNickname='major'|'minor';
 

@@ -1,17 +1,16 @@
 import {ref,computed} from 'vue';
 
-import type {Article} from '~/types/article';
-import {checkShowArticle} from '~/utils/article';
+import type {Article} from '~/types/articles';
+import {isArticleMatch} from '~/utils/filter]';
 
 export function useFilter(articles:Article[]){
   const searchQuery=ref('');
 
   const filteredArticles=computed<Article[]>(()=>
     articles.filter(article=>
-      checkShowArticle(
+      isArticleMatch(
         article,
         searchQuery.value,
-        [],
       )
     )
   );

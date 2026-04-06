@@ -2,16 +2,18 @@
 import { Content,useData } from 'vitepress';
 
 import BaseLayout from './BaseLayout.vue';
-
-const {page}=useData();
 </script>
 
 <template>
   <BaseLayout>
     <div class="max-w-2xl h-full mx-auto p-4">
-      <article>
+      <article class="prose max-w-none
+        [&_mjx-container]:inline-block
+        [&_mjx-container[display='true']]:my-8
+        [&_mjx-container[display='true']]:flex!
+        [&_mjx-container[display='true']]:justify-center!
+      ">
         <Content/>
-        {{ page.headers }}
       </article>
     </div>
   </BaseLayout>

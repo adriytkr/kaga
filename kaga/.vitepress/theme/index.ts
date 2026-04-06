@@ -7,26 +7,21 @@ import Layout from './layouts/Layout.vue';
 
 import VpLink from './components/app/VpLink.vue';
 
-import TheoremBox from './components/tools/TheoremBox.vue';
+import TheoremBox from './components/article-content/TheoremBox.vue';
 
-import MediaWithCaption from './components/tools/MediaWithCaption.vue';
-import ImageWithCaption from './components/tools/ImageWithCaption.vue';
-import YoutubeVideo from './components/tools/YoutubeVideo.vue';
+import MediaWithCaption from './components/article-content//MediaWithCaption.vue';
+import ImageWithCaption from './components/article-content//ImageWithCaption.vue';
+import YoutubeVideo from './components/article-content//YoutubeVideo.vue';
 
-import AccordionBase from './components/tools/accordion/AccordionBase.vue';
-import AccordionCommon from './components/tools/accordion/AccordionCommon.vue';
+import AccordionBase from './components/article-content/Accordion/AccordionBase.vue';
+import AccordionCommon from './components/article-content/Accordion/AccordionCommon.vue';
 
-import BaseCheckpoint from './components/tools/checkpoint/BaseCheckpoint.vue';
-import CommonCheckpoint from './components/tools/checkpoint/CommonCheckpoint.vue';
+import CheckpointType1 from './components/article-content/Checkpoint/Type1/CheckpointType1.vue';
+import CheckpointChoice from './components/article-content/Checkpoint/Type1/CheckpointChoice.vue';
 
-import CheckpointType1 from './components/tools/checkpoint/type1/CheckpointType1.vue';
-import CheckpointChoice from './components/tools/checkpoint/type1/CheckpointChoice.vue';
-
-import CheckpointType2 from './components/tools/checkpoint/type2/CheckpointType2.vue';
-import CheckpointBlank from './components/tools/checkpoint/type2/CheckpointBlank.vue';
-import CheckpointSelect from './components/tools/checkpoint/type2/CheckpointSelect.vue';
-
-import {} from '~/';
+import CheckpointType2 from './components/article-content/Checkpoint/Type2/CheckpointType2.vue';
+import CheckpointBlank from './components/article-content/Checkpoint/Type2/CheckpointBlank.vue';
+import CheckpointSelect from './components/article-content/Checkpoint/Type2/CheckpointSelect.vue';
 
 export default {
   Layout,
@@ -41,9 +36,6 @@ export default {
 
     app.component('AccordionBase',AccordionBase);
     app.component('AccordionCommon',AccordionCommon);
-
-    app.component('BaseCheckpoint',BaseCheckpoint);
-    app.component('CommonCheckpoint',CommonCheckpoint);
 
     app.component('CheckpointType1',CheckpointType1);
     app.component('CheckpointChoice',CheckpointChoice);

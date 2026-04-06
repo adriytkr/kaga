@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 
-import type { ChoiceState } from '~/types/article';
+import type { ChoiceState } from '~/types/articles';
 
 export function useCheckpointType1(
   correctChoices:number[],

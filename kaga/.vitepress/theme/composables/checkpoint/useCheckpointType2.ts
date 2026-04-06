@@ -5,7 +5,7 @@ import type {
   Schema,
   Type2State,
   validationState,
-} from '~/types/article';
+} from '~/types/articles';
 
 export function useCheckpointType2(schema:Schema){
   const formState=reactive<FormState>(

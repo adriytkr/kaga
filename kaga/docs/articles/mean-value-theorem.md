@@ -40,11 +40,13 @@ The Mean Value Thereom (or MVT) is very straightforward. It basically states tha
 MVT can be formally stated as follow
 
 <TheoremBox>
+
   **Mean Value Theorem** Let $f$ be a function continuous on $[a,b]$ and differentiable on $(a,b)$. Then, there exists some $c \in (a,b)$ suc that
 
   $$
     f'(c)=\frac{f(b)-f(a)}{b-a}
   $$
+
 </TheoremBox>
 
 Since the derivative can be represented as a tangent line and the average rate of change can be seen as the secant line, geometrically, **the secant line is parallel to the tangent line** at some point.

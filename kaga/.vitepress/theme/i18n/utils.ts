@@ -23,3 +23,8 @@ export function makeLocalizedUrl(
 
   return `/${locale}${pureUrl}`;
 }
+
+export function convertStringToLocale(str:string):Locale|undefined{
+  if(str==='en')return 'en';
+  if(str==='pt-br')return 'pt-br';
+}

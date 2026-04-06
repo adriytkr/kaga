@@ -38,6 +38,7 @@ export default defineConfig({
         '~':fileURLToPath(new URL('./theme',import.meta.url)),
         '~~':fileURLToPath(new URL('..',import.meta.url)),
         '~content':fileURLToPath(new URL('../content',import.meta.url)),
+        '~icons':fileURLToPath(new URL('./theme/components/icons',import.meta.url)),
       },
     },
     publicDir:fileURLToPath(new URL('../public',import.meta.url)),

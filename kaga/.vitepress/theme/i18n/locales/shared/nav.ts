@@ -1,11 +1,12 @@
 import type { TSchema } from '../../types';
-import { enNavT } from '../en/navT';
+import { nav as nav_en } from '../en/nav';
+import { nav as nav_pt_br } from '../pt-br/nav';
 
-export type NavT={
+export type TNavSchema={
   articles:string;
 };
 
-export const navT:TSchema<NavT>={
-  en:enNavT,
-  'pt-br':enNavT,
+export const tNav:TSchema<TNavSchema>={
+  en:nav_en,
+  'pt-br':nav_pt_br,
 };
