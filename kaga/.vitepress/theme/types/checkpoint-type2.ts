@@ -14,3 +14,10 @@ export type Type2State=
   'revealed';
 
 export type validationState=Record<string,Type2State>;
+
+export type Type2Option<T>={
+  label:string;
+  value:T;
+};
+
+export type Type2Select<T>=Type2Option<T>[];

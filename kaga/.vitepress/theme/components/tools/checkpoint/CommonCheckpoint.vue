@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import CheckpointButton from './CheckpointButton.vue';
 
+import {} from '~/components';
+
 defineEmits<{
   (e:'check'):void;
   (e:'reset'):void;

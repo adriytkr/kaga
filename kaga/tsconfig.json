@@ -2,8 +2,19 @@
   "compilerOptions": {
     "paths": {
       "~/*": ["./.vitepress/theme/*"],
+      "~~/*": ["./*"],
+      "~content/*": ["./content/*"]
     }
   },
-  "include": ["./.vitepress/theme/**/*.{vue}"],
-  "exclude": ["node_modules", "dist"]
+  "include":[
+    "./.vitepress/**/*.ts",
+    "./.vitepress/**/*.vue",
+    "**/*.ts",
+    "**/*.vue",
+    "**/*.md"
+  ],
+  "exclude": ["./node_modules/"],
+  "vueCompilerOptions": {
+    "vitePressExtensions": [".md"]
+  }
 }

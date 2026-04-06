@@ -1,6 +1,7 @@
-import type { Theme } from 'vitepress';
+import { Theme,inBrowser } from 'vitepress';
 
 import './assets/styles/main.css';
+import 'lite-youtube-embed/src/lite-yt-embed.css';
 
 import Layout from './layouts/Layout.vue';
 
@@ -23,6 +24,9 @@ import CheckpointChoice from './components/tools/checkpoint/type1/CheckpointChoi
 
 import CheckpointType2 from './components/tools/checkpoint/type2/CheckpointType2.vue';
 import CheckpointBlank from './components/tools/checkpoint/type2/CheckpointBlank.vue';
+import CheckpointSelect from './components/tools/checkpoint/type2/CheckpointSelect.vue';
+
+import {} from '~/';
 
 export default {
   Layout,
@@ -46,6 +50,9 @@ export default {
 
     app.component('CheckpointType2',CheckpointType2);
     app.component('CheckpointBlank',CheckpointBlank);
+    app.component('CheckpointSelect',CheckpointSelect);
+
+    if(inBrowser)import('lite-youtube-embed');
   },
 } satisfies Theme
 

@@ -67,6 +67,7 @@ this is a secret
 
 <script setup lang="ts">
 import {schema1} from '~content/eigenvectors/';
+import {rubyNickname} from '~content/eigenvectors/index.en.ts';
 </script>
 
 <CheckpointType2 :schema="schema1">
@@ -76,6 +77,7 @@ import {schema1} from '~content/eigenvectors/';
   <template #body>
     Kaga is twice as old as her sister.
     Her sister is 10 years old. Therefore, Kaga is <CheckpointBlank name="age"/> years old.
+    Hence, we can conclude that Ruby is <CheckpointSelect name="nickname" :options="rubyNickname"/>.
   </template>
 </CheckpointType2>
 
@@ -103,3 +105,11 @@ import {schema1} from '~content/eigenvectors/';
     hi3
   </template>
 </CheckpointType1>
+
+$$
+x = 5
+$$
+
+<YoutubeVideo id="cyW2ajAVyfA">
+  this is a caption
+</YoutubeVideo>

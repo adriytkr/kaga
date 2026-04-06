@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress';
 import tailwindcss from '@tailwindcss/vite';
-import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -35,17 +35,25 @@ export default defineConfig({
     ],
     resolve:{
       alias:{
-        '~':path.resolve(__dirname,'./theme'),
-        '~~':path.resolve(__dirname,'..'),
-        '~content':path.resolve(__dirname,'..','content'),
+        '~':fileURLToPath(new URL('./theme',import.meta.url)),
+        '~~':fileURLToPath(new URL('..',import.meta.url)),
+        '~content':fileURLToPath(new URL('../content',import.meta.url)),
       },
     },
-    publicDir:path.resolve(__dirname,'..','public'),
+    publicDir:fileURLToPath(new URL('../public',import.meta.url)),
+  },
+  vue:{
+    template:{
+      compilerOptions:{
+        isCustomElement:tag=>tag==='lite-youtube',
+      },
+    },
   },
   cleanUrls:true,
   markdown:{
     toc:{
       level:[2,3,4],
     },
+    math:true,
   },
 })
