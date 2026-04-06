@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useData } from 'vitepress';
 
-import NormalLayout from './NormalLayout.vue';
-import ArticleLayout from './ArticleLayout.vue';
+import NormalLayout from './LayoutNormal.vue';
+import ArticleLayout from './LayoutArticle.vue';
 
 const { frontmatter }=useData();
 </script>

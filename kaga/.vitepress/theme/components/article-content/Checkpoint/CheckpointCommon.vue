@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import BaseCheckpoint from './BaseCheckpoint.vue';
-import CheckpointButton from './CheckpointButton.vue';
+import BaseCheckpoint from './CheckpointBase.vue';
+import AppButton from '~/components/app/AppButton.vue';
 
 defineEmits<{
   (e:'check'):void;
   (e:'reset'):void;
-  (e:'reveal-answers'):void;
+  (e:'reveal'):void;
 }>();
 </script>
 
@@ -18,15 +18,15 @@ defineEmits<{
       <slot name="body"></slot>
     </template>
     <template #actions>
-      <CheckpointButton @click="$emit(`check`)">
+      <AppButton @click="$emit(`check`)">
         Check
-      </CheckpointButton>
-      <CheckpointButton @click="$emit(`reset`)">
+      </AppButton>
+      <AppButton @click="$emit(`reset`)">
         Reset
-      </CheckpointButton>
-      <CheckpointButton @click="$emit(`reveal-answers`)">
+      </AppButton>
+      <AppButton @click="$emit(`reveal`)">
         Reveal Answers
-      </CheckpointButton>
+      </AppButton>
     </template>
   </BaseCheckpoint>
 </template>

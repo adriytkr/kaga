@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Schema } from '~/types/articles/article';
+import type { Schema } from '~/types/articles';
 import {useCheckpointType2} from '~/composables/checkpoint/useCheckpointType2';
 
-import CommonCheckpoint from '../CommonCheckpoint.vue';
+import CommonCheckpoint from '../CheckpointCommon.vue';
 
 const props= defineProps<{
   schema:Schema;

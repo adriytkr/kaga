@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import {useCheckpointType1} from '~/composables/checkpoint/useCheckpointType1';
 
-import CommonCheckpoint from '../CommonCheckpoint.vue';
+import CommonCheckpoint from '../CheckpointCommon.vue';
 import CheckpointChoice from './CheckpointChoice.vue';
+import { provide } from 'vue';
 
 const props=defineProps<{
   choicesCount:number;
@@ -10,23 +11,25 @@ const props=defineProps<{
   max?:number;
 }>();
 
+defineEmits<{
+  (e:'check'):void;
+  (e:'reset'):void;
+  (e:'reveal'):void;
+}>();
+
 const {
+  selectedChoices,
   selectChoice,
-  getChoiceState,
-  checkChoices,
-  resetChoices,
-  revealAnswers,
-}=useCheckpointType1(
-  props.correctChoices,
-  props.max,
-);
+}=useCheckpointType1();
+
+provide<number>('x',5);
 </script>
 
 <template>
   <CommonCheckpoint
-    @check="checkChoices"
-    @reset="resetChoices"
-    @reveal-answers="revealAnswers"
+    @check="$emit('check')"
+    @reset="$emit('reset')"
+    @reveal="$emit('reveal')"
   >
     <template #title>
       <slot name="title"></slot>
@@ -42,7 +45,7 @@ const {
         <CheckpointChoice
           v-for="i in choicesCount"
           :key="i"
-          :state="getChoiceState(i)"
+          :state="'idle'"
           :disabled="false"
           @click="selectChoice(i)"
         >
