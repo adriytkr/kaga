@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
 import { useHideOnScroll } from '~/composables/useHideOnScroll';
+import { useTheme } from '~/composables/useTheme';
+
+import NavTooltip from '../NavTooltip.vue';
 
 import AppLogo from '~icons/LogoIcon.vue';
 
@@ -12,6 +17,13 @@ import LanguagePicker from './LanguagePicker.vue';
 import ThemeToggleButton from './ThemeToggleButton.vue';
 
 const {scrollClass,showHeader}=useHideOnScroll();
+
+const {theme}=useTheme();
+const themeTooltipMessage=computed<string>(()=>
+  theme.value==='light'
+    ?'Switch to dark theme'
+    :'Switch to light theme'
+);
 </script>
 
 <template>
@@ -26,19 +38,35 @@ const {scrollClass,showHeader}=useHideOnScroll();
       </VpLink>
       <div class="flex items-center">
         <div class="flex items-center gap-x-4">
-          <VpLink
-            to="/articles"
-            class="text-muted transition-colors duration-200 hover:text-body focus:text-body"
-          >
-            <BrowserIcon/>
-          </VpLink>
-          <QuickReferenceButton/>
+          <NavTooltip>
+            <VpLink
+              to="/articles"
+              class="text-muted transition-colors duration-200 hover:text-body focus:text-body"
+              ref="reference"
+            >
+              <BrowserIcon/>
+            </VpLink>
+            <template #tooltip>
+              Browse Articles
+            </template>
+          </NavTooltip>
+          <NavTooltip>
+            <QuickReferenceButton/>
+            <template #tooltip>
+              Quick Reference
+            </template>
+          </NavTooltip>
           <SearchButton @show-header="showHeader"/>
         </div>
         <div class="h-5 w-0.5 mx-4 bg-slate-200"></div>
         <div class="flex items-center gap-x-4">
           <LanguagePicker/>
-          <ThemeToggleButton/>
+          <NavTooltip>
+            <ThemeToggleButton/>
+            <template #tooltip>
+              {{ themeTooltipMessage }}
+            </template>
+          </NavTooltip>
         </div>
       </div>
     </nav>

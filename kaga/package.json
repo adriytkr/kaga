@@ -21,6 +21,7 @@
     "vitepress": "^2.0.0-alpha.17"
   },
   "dependencies": {
+    "@floating-ui/vue": "^1.1.11",
     "lite-youtube-embed": "^0.3.4",
     "manim-web": "^0.3.16"
   }

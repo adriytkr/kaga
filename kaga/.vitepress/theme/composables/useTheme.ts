@@ -1,9 +1,9 @@
 import { ref } from 'vue';
 import type {Theme} from '~/types/theme';
 
-export function useTheme() {
-  const theme=ref<Theme>('light');
+const theme=ref<Theme>('light');
 
+export function useTheme(){
   const toggleTheme=()=>{
     const newTheme=theme.value==='light'
       ?'dark'

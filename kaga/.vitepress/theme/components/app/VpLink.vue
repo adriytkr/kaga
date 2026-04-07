@@ -2,7 +2,10 @@
 import { useData } from 'vitepress';
 import { computed } from 'vue';
 
-import {makeLocalizedUrl} from '~/i18n/utils';
+import {
+  convertStringToLocale,
+  makeLocalizedUrl,
+} from '~/i18n/utils';
 
 const props=defineProps<{
   to:string;
@@ -12,7 +15,10 @@ const props=defineProps<{
 const { lang }=useData()
 
 const localizedPath=computed(()=>
-  makeLocalizedUrl(props.locale??lang.value,props.to)
+  makeLocalizedUrl(
+    convertStringToLocale(lang.value)??'en',
+    props.to,
+  ),
 )
 </script>
 
