@@ -23,7 +23,7 @@ const {
 <template>
   <Teleport to="body">
     <div
-      class="fixed w-full h-full top-0 left-0 pointer-events-none"
+      class="fixed w-full h-full z-999 top-0 left-0 pointer-events-none"
       :class="{
         'pointer-events-auto! bg-black/40 backdrop-blur-xs':isShortcutsModalOpen,
       }"

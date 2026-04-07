@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import { useData } from 'vitepress';
-
-import {tNav,TNavSchema} from '~/i18n/locales/shared/nav';
-import type { Locale } from '~/i18n';
-
 import { useHideOnScroll } from '~/composables/useHideOnScroll';
 
 import AppLogo from '~icons/LogoIcon.vue';
+
+import BrowserIcon from '~/components/icons/BrowserIcon.vue';
 
 import SearchArticle from './SearchArticle.vue';
 import QuickReference from './QuickReference.vue';
@@ -15,10 +12,6 @@ import LanguagePicker from './LanguagePicker.vue';
 import ThemeToggleButton from './ThemeToggleButton.vue';
 
 const {scrollClass}=useHideOnScroll();
-
-const {lang}=useData();
-
-const t:TNavSchema=tNav[lang.value as Locale];
 </script>
 
 <template>
@@ -32,11 +25,14 @@ const t:TNavSchema=tNav[lang.value as Locale];
       </VpLink>
       <div class="flex items-center">
         <div class="flex items-center gap-x-4">
-          <VpLink to="/articles">
-            {{ t.articles }}
+          <VpLink
+            to="/articles"
+            class="text-muted transition-colors duration-200 hover:text-body focus:text-body"
+          >
+            <BrowserIcon/>
           </VpLink>
-          <SearchArticle/>
           <QuickReference/>
+          <SearchArticle/>
         </div>
         <div class="h-5 w-0.5 mx-4 bg-slate-200"></div>
         <div class="flex items-center gap-x-4">

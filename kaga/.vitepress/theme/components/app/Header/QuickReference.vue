@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import AppIconButton from '../AppIconButton.vue';
 import QuickReferenceIcon from '~/components/icons/QuickReferenceIcon.vue';
 </script>
 
 <template>
-  <button class="text-muted transition-colors duration-200 hover:text-body">
+  <AppIconButton>
     <QuickReferenceIcon/>
-  </button>
+  </AppIconButton>
 </template>
