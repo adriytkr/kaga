@@ -5,8 +5,8 @@ import AppLogo from '~icons/LogoIcon.vue';
 
 import BrowserIcon from '~/components/icons/BrowserIcon.vue';
 
-import SearchArticle from './SearchArticle.vue';
-import QuickReference from './QuickReference.vue';
+import SearchButton from './SearchButton.vue';
+import QuickReferenceButton from './QuickReferenceButton.vue';
 
 import LanguagePicker from './LanguagePicker.vue';
 import ThemeToggleButton from './ThemeToggleButton.vue';
@@ -31,8 +31,8 @@ const {scrollClass}=useHideOnScroll();
           >
             <BrowserIcon/>
           </VpLink>
-          <QuickReference/>
-          <SearchArticle/>
+          <QuickReferenceButton/>
+          <SearchButton/>
         </div>
         <div class="h-5 w-0.5 mx-4 bg-slate-200"></div>
         <div class="flex items-center gap-x-4">

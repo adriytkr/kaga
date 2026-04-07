@@ -4,26 +4,26 @@ import {
   onUnmounted,
 } from 'vue';
 
-export function useShortcutsModal(){
-  const isShortcutsModalOpen=ref(false);
+export function useModal(){
+  const isModalOpen=ref(false);
 
-  function openShortcutsModal(){
-    isShortcutsModalOpen.value=true;
+  function openModal(){
+    isModalOpen.value=true;
     document.body.style.overflow='hidden';
   }
 
-  function closeShortcutsModal(){
-    isShortcutsModalOpen.value=false;
+  function closeModal(){
+    isModalOpen.value=false;
     document.body.style.overflow='auto';
   }
 
   function handleEsc(event:KeyboardEvent){
-    if(event.key==='Escape'&&isShortcutsModalOpen.value)
-      closeShortcutsModal();
+    if(event.key==='Escape'&&isModalOpen.value)
+      closeModal();
   }
 
   watch(
-    isShortcutsModalOpen,
+    isModalOpen,
     (isOpen)=>{
       if(isOpen){
         window.addEventListener('keydown',handleEsc);
@@ -38,8 +38,8 @@ export function useShortcutsModal(){
   onUnmounted(()=>window.removeEventListener('keydown', handleEsc));
 
   return{
-    isShortcutsModalOpen,
-    openShortcutsModal,
-    closeShortcutsModal,
+    isModalOpen,
+    openModal,
+    closeModal,
   };
 }

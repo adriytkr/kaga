@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { useModal } from '~/composables/useModal';
 
 import ExternalLinkIcon from '~/components/icons/ExternalLinkIcon.vue';
 import ManimSlidesShortcutsModal from './ManimSlidesShortcutsModal.vue';
-import { useShortcutsModal } from '~/composables/useShortcutsModal';
+import AppModal from '~/components/app/AppModal.vue';
 
 defineProps<{
   sourceCodeLink:string;
@@ -14,20 +14,17 @@ defineEmits<{
 }>();
 
 const {
-  isShortcutsModalOpen,
-  openShortcutsModal,
-  closeShortcutsModal,
-}=useShortcutsModal();
+  isModalOpen:isShortcutsModalOpen,
+  openModal:openShortcutsModal,
+  closeModal:closeShortcutsModal,
+}=useModal();
 </script>
 
 <template>
   <Teleport to="body">
-    <div
-      class="fixed w-full h-full z-999 top-0 left-0 pointer-events-none"
-      :class="{
-        'pointer-events-auto! bg-black/40 backdrop-blur-xs':isShortcutsModalOpen,
-      }"
-      @click.self="closeShortcutsModal"
+    <AppModal
+      @close="closeShortcutsModal"
+      :is-open="isShortcutsModalOpen"
     >
       <ManimSlidesShortcutsModal
         class="opacity-0 transition-opacity duration-200"
@@ -36,7 +33,7 @@ const {
         }"
         @close="closeShortcutsModal"
       />
-    </div>
+    </AppModal>
   </Teleport>
   <div class="mb-2 flex justify-between items-center">
     <div>
