@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { useTooltip } from '~/composables/useTooltip';
 
-const {delay=200}=defineProps<{
+const {delay=200,disabled=false}=defineProps<{
   delay?:number;
+  disabled?:boolean;
 }>();
 
 const {
@@ -12,7 +13,7 @@ const {
   isVisible,
   show,
   hide,
-}=useTooltip(delay);
+}=useTooltip(delay,disabled);
 </script>
 
 <template>
@@ -30,7 +31,7 @@ const {
       :style="floatingStyles"
       class="z-[9999] max-w-xs bg-gray-900 text-white text-xs px-3 py-2 rounded shadow-xl pointer-events-none opacity-0 transition-opacity duration-200"
       :class="{
-        'opacity-100':isVisible,
+        'opacity-100':isVisible&&!disabled,
       }"
     >
       <slot name="tooltip"></slot>

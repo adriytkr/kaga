@@ -17,7 +17,7 @@ const {lang}=useData();
 
 const normalizedTo=computed<string>(()=>
   getAbsoluteUrlWithoutLocale(
-    convertStringToLocale(lang.value)??'en',
+    convertStringToLocale(props.locale)??'en',
     route.path,
   )
 );

@@ -6,7 +6,7 @@ import {
   offset
 } from '@floating-ui/vue';
 
-export function useTooltip(delay:number=200){
+export function useTooltip(delay:number=200,disabled:boolean=false){
   const reference=ref(null);
   const floating=ref(null);
   const isVisible=ref(false);
@@ -27,6 +27,8 @@ export function useTooltip(delay:number=200){
   let timeoutId:ReturnType<typeof setTimeout>|null=null;
 
   function show(){
+    if(disabled)return;
+
     timeoutId=setTimeout(
       ()=>isVisible.value=true,
       delay,

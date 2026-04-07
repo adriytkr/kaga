@@ -16,7 +16,7 @@ const { lang }=useData()
 
 const localizedPath=computed(()=>
   makeLocalizedUrl(
-    convertStringToLocale(lang.value)??'en',
+    convertStringToLocale(props.locale??lang.value)??'en',
     props.to,
   ),
 )

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 import { useHideOnScroll } from '~/composables/useHideOnScroll';
 import { useTheme } from '~/composables/useTheme';
@@ -24,6 +24,8 @@ const themeTooltipMessage=computed<string>(()=>
     ?'Switch to dark theme'
     :'Switch to light theme'
 );
+
+const isLanguagePickerModalOpen=ref(false);
 </script>
 
 <template>
@@ -42,7 +44,6 @@ const themeTooltipMessage=computed<string>(()=>
             <VpLink
               to="/articles"
               class="text-muted transition-colors duration-200 hover:text-body focus:text-body"
-              ref="reference"
             >
               <BrowserIcon/>
             </VpLink>
@@ -60,7 +61,12 @@ const themeTooltipMessage=computed<string>(()=>
         </div>
         <div class="h-5 w-0.5 mx-4 bg-slate-200"></div>
         <div class="flex items-center gap-x-4">
-          <LanguagePicker/>
+          <NavTooltip :disabled="isLanguagePickerModalOpen">
+            <LanguagePicker v-model:open="isLanguagePickerModalOpen"/>
+            <template #tooltip>
+              Switch Language
+            </template>
+          </NavTooltip>
           <NavTooltip>
             <ThemeToggleButton/>
             <template #tooltip>

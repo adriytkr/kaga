@@ -10,7 +10,7 @@ import type {
 import LanguagePickerButton from './LanguagePickerButton.vue';
 import ChevronLeftIcon from '~/components/icons/ChevronLeftIcon.vue';
 
-const isOpen=ref(false);
+const isOpen=defineModel('open',{default:false});
 
 const {site,lang}=useData();
 
