@@ -6,7 +6,11 @@ import {
   toValue,
   watch,
 } from 'vue';
-import { DialogContext, SearchDialogContext } from '~/types/dialog';
+
+import {
+  DialogContext,
+  SearchDialogContext,
+} from '~/types/dialog';
 
 export function useSearchModal(isOpen:MaybeRefOrGetter<boolean>){
   const selectedItemIndex=ref(-1);

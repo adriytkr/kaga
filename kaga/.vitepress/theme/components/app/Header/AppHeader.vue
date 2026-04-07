@@ -12,6 +12,7 @@ import BrowserIcon from '~/components/icons/BrowserIcon.vue';
 
 import SearchButton from './SearchButton.vue';
 import QuickReferenceButton from './QuickReferenceButton.vue';
+import ShortcutsButton from './ShortcutsButton.vue';
 
 import LanguagePicker from './LanguagePicker.vue';
 import ThemeToggleButton from './ThemeToggleButton.vue';
@@ -55,6 +56,12 @@ const isLanguagePickerModalOpen=ref(false);
             <QuickReferenceButton/>
             <template #tooltip>
               Quick Reference
+            </template>
+          </NavTooltip>
+          <NavTooltip>
+            <ShortcutsButton/>
+            <template #tooltip>
+              Show Shortcuts
             </template>
           </NavTooltip>
           <SearchButton @show-header="showHeader"/>

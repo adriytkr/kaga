@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import {useSearchModal} from '~/composables/useSearchModal';
-import { SearchDialogContext } from '~/types/dialog';
-
-import ArrowKeyIcon from '~/components/icons/ArrowKeyIcon.vue';
+import type { SearchDialogContext } from '~/types/dialog';
 
 import KeyboardKey from '../KeyboardKey.vue';
+import ArrowKeyIcon from '~/components/icons/ArrowKeyIcon.vue';
+import EnterKeyIcon from '~/components/icons/EnterKeyIcon.vue';
+
 import SearchModalItem from './SearchModalItem.vue';
 
 const props=defineProps<{
@@ -41,7 +42,7 @@ defineExpose<SearchDialogContext>(context);
         ref="inputRef"
         v-model="searchQuery"
       >
-      <KeyboardKey>Ctrl K</KeyboardKey>
+      <KeyboardKey is-not-single>Ctrl K</KeyboardKey>
     </div>
     <hr class="border-t-border-color">
     <div class="max-h-60 h-60 w-full overflow-y-auto">
@@ -76,6 +77,12 @@ defineExpose<SearchDialogContext>(context);
     </div>
     <hr class="border-t-border-color">
     <ul class="p-4 flex gap-x-6 items-center">
+      <li class="flex items-center gap-x-2">
+        <KeyboardKey>
+          <EnterKeyIcon/>
+        </KeyboardKey>
+        <span>to select</span>
+      </li>
       <li class="flex items-center gap-x-2">
         <KeyboardKey>
           <ArrowKeyIcon class="-rotate-90"/>

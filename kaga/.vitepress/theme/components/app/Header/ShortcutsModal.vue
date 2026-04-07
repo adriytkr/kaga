@@ -32,41 +32,30 @@ defineExpose<DialogContext>(context);
         <CloseIcon/>
       </AppIconButton>
     </header>
-    <p class="mb-8">
-      Your video should be focused to use these shortcuts (click anywhere on the video to focus).
-    </p>
     <ul class="flex flex-col gap-y-4">
       <li class="flex justify-between items-center">
-        <span>Play/Pause</span>
-        <KeyboardKey is-not-single>Space</KeyboardKey>
+        <span>Toggle Search</span>
+        <div class="flex gap-x-2 items-center">
+          <KeyboardKey is-not-single>
+            Ctrl
+          </KeyboardKey>
+          <span class="font-bold">+</span>
+          <KeyboardKey>
+            K
+          </KeyboardKey>
+        </div>
       </li>
       <li class="flex justify-between items-center">
-        <span>Previous Slide</span>
-        <KeyboardKey>
-          <ArrowKeyIcon class="rotate-180"/>
-        </KeyboardKey>
+        <span>Scroll Up</span>
+        <KeyboardKey>K</KeyboardKey>
       </li>
       <li class="flex justify-between items-center">
-        <span>Next Slide</span>
-        <KeyboardKey>
-          <ArrowKeyIcon/>
-        </KeyboardKey>
+        <span>Scroll Down</span>
+        <KeyboardKey>J</KeyboardKey>
       </li>
       <li class="flex justify-between items-center">
-        <span>First Slide</span>
-        <KeyboardKey>
-          <ArrowKeyIcon class="-rotate-90"/>
-        </KeyboardKey>
-      </li>
-      <li class="flex justify-between items-center">
-        <span>Last Slide</span>
-        <KeyboardKey>
-          <ArrowKeyIcon class="rotate-90"/>
-        </KeyboardKey>
-      </li>
-      <li class="flex justify-between items-center">
-        <span>Toggle Full Screen Mode</span>
-        <KeyboardKey>F</KeyboardKey>
+        <span>Open Shortcuts Modal</span>
+        <KeyboardKey>?</KeyboardKey>
       </li>
     </ul>
   </dialog>

@@ -1,6 +1,17 @@
+<script setup lang="ts">
+const {isNotSingle=false}=defineProps<{
+  isNotSingle?:boolean;
+}>();
+</script>
+
 <template>
   <span class="inline-flex">
-    <kbd class="px-1 py-0.5 bg-border-color rounded-sm">
+    <kbd
+      class="min-w-10 h-10 inline-flex justify-center items-center bg-border-color rounded-sm font-semibold"
+      :class="{
+        'px-4':isNotSingle,
+      }"
+    >
       <slot></slot>
     </kbd>
   </span>
