@@ -76,6 +76,8 @@ Check source code here.
 Consider the following function f. It is continuous and differentiable for all $x \in \mathbb{R}$
 
 Consider the following function f. It is continuous and differentiable for all $x \in \mathbb{R}$
+
+Consider the following function f. It is continuous and differentiable for all $x \in \mathbb{R}$
 Consider the following function f. It is continuous and differentiable for all $x \in \mathbb{R}$
 Consider the following function f. It is continuous and differentiable for all $x \in \mathbb{R}$
 

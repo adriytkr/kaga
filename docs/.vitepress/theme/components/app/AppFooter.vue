@@ -4,12 +4,12 @@ const date=new Date().getFullYear();
 
 <template>
   <footer>
-    <div class="max-w-4xl mx-auto p-4 flex justify-between items-center">
+    <div class="max-w-4xl mx-auto p-4 flex justify-between items-center text-sm">
       <span>
-        &copy; {{date}}
+        &copy; {{date}} Kaga
       </span>
       <span>
-        Powered by <a href="https://astro.build/">Nuxt</a>
+        Powered by <a href="https://vitepress.dev/">Vitepress</a>
       </span>
     </div>
   </footer>
