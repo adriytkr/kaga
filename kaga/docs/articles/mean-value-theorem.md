@@ -21,6 +21,14 @@ featured: true
 
 ## Pre-requisites
 
+<DefinitionTooltip>
+test
+
+<template #tooltip>
+hi
+</template>
+</DefinitionTooltip>
+
 The Mean Value Theorem is an elementary theorem of Calculus. Hence, I recommend at least a basic familiarity with Calculus.
 
 The formal proof which I present at the end requires the following theorems:

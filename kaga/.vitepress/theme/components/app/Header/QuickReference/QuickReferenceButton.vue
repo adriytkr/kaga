@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useModal } from '~/composables/useModal';
 
-import AppIconButton from '../AppIconButton.vue';
+import AppIconButton from '~/components/app/AppIconButton.vue';
 import QuickReferenceIcon from '~/components/icons/QuickReferenceIcon.vue';
 
 import QuickReferenceModal from './QuickReferenceModal.vue';

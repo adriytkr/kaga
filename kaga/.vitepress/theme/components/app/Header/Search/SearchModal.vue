@@ -2,15 +2,27 @@
 import {useSearchModal} from '~/composables/useSearchModal';
 import type { SearchDialogContext } from '~/types/dialog';
 
-import KeyboardKey from '../KeyboardKey.vue';
+import KeyboardKey from '~/components/app/KeyboardKey.vue';
 import ArrowKeyIcon from '~/components/icons/ArrowKeyIcon.vue';
 import EnterKeyIcon from '~/components/icons/EnterKeyIcon.vue';
 
-import AppIconButton from '../AppIconButton.vue';
+import AppIconButton from '~/components/app/AppIconButton.vue';
 import CloseIcon from '~/components/icons/CloseIcon.vue';
 
 import SearchModalItem from './SearchModalItem.vue';
 import SearchIcon from '~/components/icons/SearchIcon.vue';
+
+import {tNav} from '~/i18n/locales/shared/nav';
+import {tFilter} from '~/i18n/locales/shared/filter';
+import {
+  convertStringToLocale,
+  DEFAULT_LOCALE,
+} from '~/i18n';
+import { useData } from 'vitepress';
+
+const {lang}=useData();
+const t=tNav[convertStringToLocale(lang.value)??DEFAULT_LOCALE];
+const t2=tFilter[convertStringToLocale(lang.value)??DEFAULT_LOCALE];
 
 const props=defineProps<{
   isOpen:boolean;
@@ -47,7 +59,7 @@ defineExpose<SearchDialogContext>(context);
         <input
           type="text"
           class="mx-4 flex-1 outline-none"
-          placeholder="Search articles"
+          :placeholder="t.search.modal.placeholder"
           ref="inputRef"
           v-model="searchQuery"
         >
@@ -62,9 +74,9 @@ defineExpose<SearchDialogContext>(context);
     </div>
     <hr class="border-t-border-color">
     <div class="max-h-60 h-60 w-full overflow-y-auto">
-      <div v-if="false">
+      <div v-show="true">
         <p class="mx-6 my-2">
-          5 matches for "{{ searchQuery }}"
+          {{ t2.matches(10,searchQuery) }}
         </p>
         <ul>
           <SearchModalItem
@@ -76,17 +88,17 @@ defineExpose<SearchDialogContext>(context);
       </div>
       <div
         class="w-full h-full flex justify-center items-center"
-        v-show="true"
+        v-show="false"
       >
         <div class="flex flex-col">
           <span>
-            No articles for "{{ searchQuery }}"
+            {{ t2.matches(0,searchQuery) }}
           </span>
           <button
             @click="clearSearch"
             class="text-primary hover:underline"
           >
-            Clear Search
+            {{ t2.clear }}
           </button>
         </div>
       </div>
@@ -97,7 +109,9 @@ defineExpose<SearchDialogContext>(context);
         <KeyboardKey>
           <EnterKeyIcon/>
         </KeyboardKey>
-        <span>to select</span>
+        <span>
+          {{ t.search.modal.toSelect }}
+        </span>
       </li>
       <li class="flex items-center gap-x-2">
         <KeyboardKey>
@@ -106,13 +120,17 @@ defineExpose<SearchDialogContext>(context);
         <KeyboardKey>
           <ArrowKeyIcon class="rotate-90"/>
         </KeyboardKey>
-        <span>to navigate</span>
+        <span>
+          {{ t.search.modal.toNavigate }}
+        </span>
       </li>
       <li class="flex items-center gap-x-2">
         <KeyboardKey>
-          esc
+          Esc
         </KeyboardKey>
-        <span>to close</span>
+        <span>
+          {{ t.search.modal.toClose }}
+        </span>
       </li>
     </ul>
   </dialog>

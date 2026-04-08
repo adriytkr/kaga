@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useModal } from '~/composables/useModal';
 
-import AppIconButton from '../AppIconButton.vue';
+import AppIconButton from '~/components/app/AppIconButton.vue';
 import KeyboardIcon from '~/components/icons/KeyboardIcon.vue';
 
 import ShortcutsModal from './ShortcutsModal.vue';

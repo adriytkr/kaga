@@ -1,32 +1,40 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
+import { useData } from 'vitepress';
 
 import { useHideOnScroll } from '~/composables/useHideOnScroll';
 import { useTheme } from '~/composables/useTheme';
 
-import NavTooltip from '../NavTooltip.vue';
-
 import AppLogo from '~icons/LogoIcon.vue';
 
+import NavTooltip from '../NavTooltip.vue';
+
 import BrowserIcon from '~/components/icons/BrowserIcon.vue';
+import SearchButton from './Search/SearchButton.vue';
+import QuickReferenceButton from './QuickReference/QuickReferenceButton.vue';
+import ShortcutsButton from './Shortcuts/ShortcutsButton.vue';
+import LanguagePicker from './LanguagePicker/LanguagePicker.vue';
+import ThemeToggleButton from './ThemeToggle//ThemeToggleButton.vue';
 
-import SearchButton from './SearchButton.vue';
-import QuickReferenceButton from './QuickReferenceButton.vue';
-import ShortcutsButton from './ShortcutsButton.vue';
-
-import LanguagePicker from './LanguagePicker.vue';
-import ThemeToggleButton from './ThemeToggleButton.vue';
+import {tNav} from '~/i18n/locales/shared/nav';
+import {
+  convertStringToLocale,
+  DEFAULT_LOCALE,
+} from '~/i18n';
 
 const {scrollClass,showHeader}=useHideOnScroll();
+
+const isLanguagePickerModalOpen=ref(false);
+
+const {lang}=useData();
+const t=tNav[convertStringToLocale(lang.value)??DEFAULT_LOCALE];
 
 const {theme}=useTheme();
 const themeTooltipMessage=computed<string>(()=>
   theme.value==='light'
-    ?'Switch to dark theme'
-    :'Switch to light theme'
+    ?t.tooltip.theme.light
+    :t.tooltip.theme.dark
 );
-
-const isLanguagePickerModalOpen=ref(false);
 </script>
 
 <template>
@@ -49,19 +57,19 @@ const isLanguagePickerModalOpen=ref(false);
               <BrowserIcon/>
             </VpLink>
             <template #tooltip>
-              Browse Articles
+              {{ t.tooltip.articles }}
             </template>
           </NavTooltip>
           <NavTooltip>
             <QuickReferenceButton/>
             <template #tooltip>
-              Quick Reference
+              {{ t.tooltip.quickReference }}
             </template>
           </NavTooltip>
           <NavTooltip>
             <ShortcutsButton/>
             <template #tooltip>
-              Show Shortcuts
+              {{ t.tooltip.shortcuts }}
             </template>
           </NavTooltip>
           <SearchButton @show-header="showHeader"/>
@@ -71,7 +79,7 @@ const isLanguagePickerModalOpen=ref(false);
           <NavTooltip :disabled="isLanguagePickerModalOpen">
             <LanguagePicker v-model:open="isLanguagePickerModalOpen"/>
             <template #tooltip>
-              Switch Language
+              {{ t.tooltip.language }}
             </template>
           </NavTooltip>
           <NavTooltip>

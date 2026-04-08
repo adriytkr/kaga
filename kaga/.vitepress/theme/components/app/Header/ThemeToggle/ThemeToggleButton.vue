@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {useTheme} from '~/composables/useTheme';
 
-import AppIconButton from '../AppIconButton.vue';
+import AppIconButton from '~/components/app/AppIconButton.vue';
 import SunIcon from '~/components/icons/SunIcon.vue';
 import MoonIcon from '~/components/icons/MoonIcon.vue';
 

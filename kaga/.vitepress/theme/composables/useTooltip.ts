@@ -17,7 +17,7 @@ export function useTooltip(delay:number=200,disabled:boolean=false){
     {
       placement: 'top',
       middleware: [
-        offset(10),
+        offset(5),
         flip(),
         shift({ padding: 8 }),
       ],

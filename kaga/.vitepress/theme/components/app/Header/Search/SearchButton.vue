@@ -2,10 +2,20 @@
 import { onMounted, onUnmounted, ref, watch } from 'vue';
 
 import SearchIcon from '~icons/SearchIcon.vue';
-import KeyboardKey from '../KeyboardKey.vue';
+import KeyboardKey from '~/components/app/KeyboardKey.vue';
 
 import SearchModal from './SearchModal.vue';
 import { SearchDialogContext } from '~/types/dialog';
+
+import {tNav} from '~/i18n/locales/shared/nav';
+import {
+  convertStringToLocale,
+  DEFAULT_LOCALE,
+} from '~/i18n';
+import { useData } from 'vitepress';
+
+const {lang}=useData();
+const t=tNav[convertStringToLocale(lang.value)??DEFAULT_LOCALE];
 
 const emit=defineEmits<{
   (e:'show-header'):void;
@@ -88,7 +98,9 @@ onUnmounted(()=>window.removeEventListener('keydown',handleKeyDown));
     @click="openModal"
   >
     <SearchIcon class="text-muted transition-colors duration-200 group-hover:text-body group-focus:text-body"/>
-    <span class="ml-2 mr-10">Search articles</span>
+    <span class="ml-2 mr-10">
+      {{ t.search.placeholder }}
+    </span>
     <KeyboardKey is-not-single>Ctrl K</KeyboardKey>
   </button>
 </template>
