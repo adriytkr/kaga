@@ -1,1 +1,3 @@
-# Manim Animations
+# Kaga
+
+Technical articles with intuition.
