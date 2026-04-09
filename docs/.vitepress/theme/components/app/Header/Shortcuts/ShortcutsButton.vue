@@ -4,7 +4,7 @@ import KeyboardIcon from '~/components/icons/KeyboardIcon.vue';
 
 import ShortcutsModal from './ShortcutsModal.vue';
 
-import { useUI } from '~/composables/useUi';
+import { useUI } from '~/composables/useUI';
 
 const {
   isShortcutsModalOpen,

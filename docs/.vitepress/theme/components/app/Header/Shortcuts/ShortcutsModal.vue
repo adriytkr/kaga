@@ -15,7 +15,7 @@ import ShortcutsModalItem from './ShortcutsModalItem.vue';
 const {lang}=useData();
 const t=tNav[convertStringToLocale(lang.value)??DEFAULT_LOCALE];
 
-import { useUI } from '~/composables/useUi';
+import { useUI } from '~/composables/useUI';
 import { ref, watch } from 'vue';
 
 const {

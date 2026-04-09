@@ -3,7 +3,7 @@ import {
   onUnmounted,
   ref,
 } from 'vue';
-import { useUI } from './useUi';
+import { useUI } from './useUI';
 
 export function useSearchModal(){
   const selectedItemIndex=ref(-1);

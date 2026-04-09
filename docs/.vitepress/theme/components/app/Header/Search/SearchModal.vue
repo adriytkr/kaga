@@ -19,7 +19,7 @@ import {
 } from '~/i18n';
 import { useData } from 'vitepress';
 
-import { useUI } from '~/composables/useUi';
+import { useUI } from '~/composables/useUI';
 import { watch } from 'vue';
 
 const {lang}=useData();

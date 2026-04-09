@@ -1,6 +1,6 @@
 import {onMounted,onUnmounted} from 'vue';
 
-import { useUI } from '~/composables/useUi';
+import { useUI } from '~/composables/useUI';
 
 export function useShortcuts(){
   const {

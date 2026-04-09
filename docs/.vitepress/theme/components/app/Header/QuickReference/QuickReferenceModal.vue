@@ -8,7 +8,7 @@ import {
   DEFAULT_LOCALE,
 } from '~/i18n';
 
-import { useUI } from '~/composables/useUi';
+import { useUI } from '~/composables/useUI';
 
 import AppButtonIcon from '~/components/app/AppButtonIcon.vue';
 import CloseIcon from '~/components/icons/CloseIcon.vue';

@@ -7,7 +7,7 @@ import {
   DEFAULT_LOCALE,
 } from '~/i18n';
 
-import { useUI } from '~/composables/useUi';
+import { useUI } from '~/composables/useUI';
 import SearchIcon from '~icons/SearchIcon.vue';
 import KeyboardKey from '~/components/app/KeyboardKey.vue';
 import SearchModal from './SearchModal.vue';

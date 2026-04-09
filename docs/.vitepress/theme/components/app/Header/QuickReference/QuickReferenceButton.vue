@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useUI } from '~/composables/useUi';
+import { useUI } from '~/composables/useUI';
 
 import AppButtonIcon from '~/components/app/AppButtonIcon.vue';
 import QuickReferenceIcon from '~/components/icons/QuickReferenceIcon.vue';

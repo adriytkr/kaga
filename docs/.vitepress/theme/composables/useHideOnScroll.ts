@@ -3,7 +3,7 @@ import {
   onUnmounted,
 } from 'vue';
 
-import { useUI } from './useUi';
+import { useUI } from './useUI';
 
 export function useHideOnScroll(){
   let lastScrollY=0;
