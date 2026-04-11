@@ -4,9 +4,9 @@ import { fileURLToPath } from 'node:url';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  srcDir: "docs",
-  title: "Kaga",
-  description: "Yet to be written",
+  srcDir:'content',
+  title:'Kaga',
+  description: 'Intuitive, Dynamic and Rigorous explanations all in one place.',
   head: [
     [
       'script',
@@ -51,13 +51,4 @@ export default defineConfig({
     },
   },
   cleanUrls:true,
-  markdown:{
-    toc:{
-      level:[2,3,4],
-    },
-    math:true,
-  },
-  themeConfig:{
-    outline:[2,4],
-  },
 })
