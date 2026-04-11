@@ -6,7 +6,7 @@ import LayoutBase from './LayoutBase.vue';
 
 <template>
   <LayoutBase>
-    <div class="max-w-2xl h-full mx-auto p-4">
+    <div class="max-w-2xl h-full mx-auto px-4 py-12">
       <article class="prose max-w-none prose-a:text-primary prose-headings:text-body prose-p:text-muted prose-strong:text-body prose-hr:border-t-border-color
         [&_mjx-container]:inline-block
         [&_mjx-container]:text-muted

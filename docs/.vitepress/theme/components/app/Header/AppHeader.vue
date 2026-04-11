@@ -7,7 +7,7 @@ import ThemeToggleButton from './ThemeToggleButton.vue';
 
 <template>
   <header class="bg-surface border-b-4 border-b-primary">
-    <nav class="max-w-4xl mx-auto p-4 flex justify-between items-center">
+    <nav class="max-w-4xl mx-auto px-4 py-2 flex justify-between items-center">
       <VpLink to="/">
         <KagaLogo/>
       </VpLink>
