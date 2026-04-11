@@ -66,7 +66,7 @@ The website is designed to run smoothly even in slow connections. Hence, only th
 
 I deployed the website using [Vercel](https://vercel.com/). You can view it [here](https://kaga-blog.vercel.app/). 
 
-### ▶️ Youtube
+### 🎬 Youtube
 
 I use [Manim](https://www.manim.community/) — a very powerful Python library that creates high-quality animations — to generate the animations in my videos.
 
