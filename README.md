@@ -44,15 +44,17 @@ You are **very welcome** to let me know by creating an [issue](https://github.co
 
 ## ⚙️ Pipeline
 
-In this section, I explain the architecture of Kaga and my design decisions.
+In this section, I explain the architecture of Kaga and my design decisions, as well as, how I normally write my scripts.
+
+Information about the website and how the animations were built can be found in [/docs](./docs) and [/manim](./manim) directories, respectively.
 
 ### </> Website
 
 The blog was built using [Vitepress](https://vitepress.dev/) for three main reasons:
 
-- SSG (Static Site Generation);
-- The articles can be written in Markdown and they automatically become web pages;
-- It allows the direct use of [Vue.js](https://vuejs.org/) logic inside Markdown.
+- **SSG (Static Site Generation):** For performance, fast load times, and superior SEO.
+- **Markdown Workflow:** The articles can be written in Markdown and they automatically become web pages;
+- **Vue.js integration:** Seamlessly [Vue.js](https://vuejs.org/) integration and logic directly inside Markdown.
 
 The styling and theming were implemented using [Tailwind](https://tailwindcss.com/). Following a mobile-first approach.
 
@@ -62,7 +64,7 @@ All interactivity — the Knowledge Gates and the Presentation — were implemen
 
 The website is designed to run smoothly even in slow connections. Hence, only the essenail javascript is loaded. For example, the Youtube Video Player is initially displayed as a static image. The actual iframe is only created when the user clicks the play button, reducing unecessary requests when the user doesn't want to watch the video.
 
-I deployed the website using [Vercel](https://vercel.com/) and it is available [here](https://kaga-blog.vercel.app/). 
+I deployed the website using [Vercel](https://vercel.com/). You can view it [here](https://kaga-blog.vercel.app/). 
 
 ### ▶️ Youtube
 
@@ -70,7 +72,7 @@ I use [Manim](https://www.manim.community/) — a very powerful Python library t
 
 The voice is mine (sorry for any accent or misspronunciation).
 
-The videos are posted in my [youtube channel](https://www.youtube.com/@adriytkr).
+The videos are posted in my Youtube Channel. You can access it [here](https://www.youtube.com/@adriytkr).
 
 ### 📝 Scripts
 
