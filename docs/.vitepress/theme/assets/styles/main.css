@@ -6,14 +6,11 @@
 
 @theme{
   --color-primary: var(--color-blue-600);
-  --color-secondary: var(--color-blue-800);
-
   --color-background: var(--color-gray-100);
-  --color-surface: var(--color-white);
-  --color-border-color: var(--color-slate-200);
+  --color-surface: var(--color-slate-200);
 
   --color-body: var(--color-slate-900);
-  --color-muted: var(--color-slate-500);
+  --color-muted: var(--color-slate-600);
 }
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
@@ -21,15 +18,6 @@
 @layer theme{
   :root{
     @variant dark{
-      --color-primary: var(--color-blue-600);
-      --color-secondary: var(--color-blue-800);
-
-      --color-background: var(--color-slate-950);
-      --color-surface: var(--color-slate-900);
-      --color-border-color: var(--color-slate-800);
-
-      --color-body: var(--color-slate-50);
-      --color-muted: var(--color-slate-400);
     }
   }
 }
@@ -51,7 +39,7 @@
   h4,
   h5,
   h6{
-    @apply text-body;
+    @apply text-body font-bold;
   }
 
   body{
@@ -65,8 +53,14 @@
   button{
     @apply cursor-pointer disabled:cursor-default;
   }
+}
 
-  .reset{
-    @apply [&>*:first-child]:mt-0! [&>*:last-child]:mb-0!;
+@layer utilities {
+  .reset> *:first-child {
+    margin-top: 0;
+  }
+
+  .reset > *:last-child {
+    margin-bottom: 0;
   }
 }

@@ -1,8 +1,8 @@
 ---
 layout: article
 
-title: Gram-Schmidt
-description: Gram-Schmidt Description
+title: Sparse Table
+description: Sparse Table Description
 
 featured: true
 ---

@@ -1,8 +1,8 @@
 ---
 layout: article
 
-title: Gram-Schmidt
-description: Gram-Schmidt Description
+title: Eigenvectors
+description: Eigenvectors Description
 
 featured: true
 ---

@@ -1,10 +1,11 @@
 ---
 layout: article
 
-title: Gram-Schmidt
-description: Gram-Schmidt Description
+title: Prefix Sum
+description: Prefix Sum Description
 
 featured: true
 ---
 
 # {{$frontmatter.title}}
+
