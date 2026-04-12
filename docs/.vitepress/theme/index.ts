@@ -11,9 +11,9 @@ import Theorem from './components/content/Theorem.vue';
 import Accordion from './components/content/Accordion/Accordion.vue';
 import Quote from './components/content/Quote.vue';
 
-import Media from './components/media/Media.vue';
-import Image from './components/media/Image.vue';
-import Youtube from './components/media/Youtube.vue';
+import Media from './components/Media/Media.vue';
+import Image from './components/Media/Image.vue';
+import Youtube from './components/Media/Youtube.vue';
 
 import DefinitionTooltip from './components/content/DefinitionTooltip.vue';
 
