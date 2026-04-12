@@ -47,9 +47,7 @@ Simple harmonic motion (SHM) is a special type of periodic, back-and-forth motio
 One of the best songs I've ever heard in my entire life.
 </Youtube>
 
-<Quote>
-Jacobian Matrix an Universal Language.
-</Quote>
+<Quote>Jacobian Matrix an Universal Language.</Quote>
 
 A prefix sum (also known as a cumulative sum or running total) is a preprocessing technique where you create an auxiliary array that stores the cumulative sum of elements in a sequence up to each index.
 
@@ -76,7 +74,11 @@ This is a test
 function
 </p>
 
-<Presentation :total-slides="3">
+<Presentation
+  :total-slides="3"
+  presentation="/presentations/jacobian-matrix/Presentation.html"
+  thumbnail="/images/admiral-graf-spee.jpg"
+>
 <template #slide-1>
 
 The Gram-Schmidt process is a linear algebra method for transforming a set of linearly independent vectors into an orthonormal set (orthogonal and unit length) that spans the same subspace

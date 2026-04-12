@@ -17,8 +17,7 @@
 
 @layer theme{
   :root{
-    @variant dark{
-    }
+    @variant dark{}
   }
 }
 
@@ -63,4 +62,19 @@
   .reset > *:last-child {
     margin-bottom: 0;
   }
+}
+
+@keyframes feedback-animation {
+  0%,100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  20%,50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-feedback {
+  animation: feedback-animation 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

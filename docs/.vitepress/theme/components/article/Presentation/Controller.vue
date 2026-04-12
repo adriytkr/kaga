@@ -7,6 +7,7 @@ import PlayIcon from '~icons/Presentation/PlayIcon.vue';
 const props=defineProps<{
   currentSlide:number;
   totalSlides:number;
+  isPlaying:boolean;
 }>();
 
 defineEmits<{
@@ -22,20 +23,34 @@ defineEmits<{
 
 <template>
   <div class="flex items-center gap-x-2">
-    <button @click="$emit('first-slide')">
+    <button
+      @click="$emit('first-slide')"
+      :disabled="currentSlide===0"
+    >
       <LastPageIcon class="rotate-180"/>
     </button>
-    <button @click="$emit('previous-slide')">
+    <button
+      @click="$emit('previous-slide')"
+      :disabled="currentSlide===0"
+    >
       <NextIcon class="rotate-180"/>
     </button>
-    <button @click="$emit('toggle-play')">
-      <PauseIcon/>
-      <!-- <PlayIcon/> -->
+    <button
+      @click="$emit('toggle-play')"
+    >
+      <PauseIcon v-if="isPlaying"/>
+      <PlayIcon v-else/>
     </button>
-    <button @click="$emit('next-slide')">
+    <button
+      @click="$emit('next-slide')"
+      :disabled="currentSlide===totalSlides-1"
+    >
       <NextIcon/>
     </button>
-    <button @click="$emit('last-slide')">
+    <button
+      @click="$emit('last-slide')"
+      :disabled="currentSlide===totalSlides-1"
+    >
       <LastPageIcon/>
     </button>
   </div>
