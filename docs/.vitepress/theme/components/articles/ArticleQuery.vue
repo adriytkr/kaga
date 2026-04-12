@@ -1,0 +1,42 @@
+<script lang="ts">
+export interface QueryAPI{
+  clearInput:()=>void;
+}
+</script>
+
+<script setup lang="ts">
+import {ref} from 'vue';
+
+import SearchIcon from '~icons/SearchIcon.vue';
+import CloseIcon from '../icons/CloseIcon.vue';
+
+defineProps<{
+  placeholder:string;
+}>();
+
+const inputRef=ref<HTMLInputElement|null>(null);
+const query=defineModel<string>({default:''});
+
+function clearInput(){
+  inputRef.value?.focus();
+  query.value='';
+}
+
+defineExpose({clearInput});
+</script>
+
+<template>
+  <div class="mx-auto max-w-md flex gap-x-2 px-2 items-center border border-muted rounded-md">
+    <SearchIcon/>
+    <input
+      type="text"
+      v-model="query"
+      ref="inputRef"
+      :placeholder="placeholder"
+      class="flex-1 py-2 outline-none font-medium placeholder:font-medium"
+    />
+    <button @click="clearInput">
+      <CloseIcon/>
+    </button>
+  </div>
+</template>
