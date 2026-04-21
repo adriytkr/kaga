@@ -10,7 +10,7 @@ class VideoScene(VideoSceneAssets):
 
     # ---------------- Initial Array ----------------
     elements=[]
-    for n in self.array:
+    for idx,n in enumerate(self.array):
       square=Square(
         side_length=1,
         fill_color=BLACK,
@@ -22,7 +22,15 @@ class VideoScene(VideoSceneAssets):
       label=MathTex(str(n)).scale(0.75)
       label.move_to(square.get_center())
 
-      element=VGroup(square,label)
+      el_index=MathTex(idx)\
+        .scale(0.75)\
+        .next_to(
+          square,
+          DOWN,
+          buff=0.08
+        )
+
+      element=VGroup(square,label,el_index)
       elements.append(element)
 
     array_vgroup=VGroup(*elements)
