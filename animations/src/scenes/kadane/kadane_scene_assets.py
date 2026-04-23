@@ -24,7 +24,7 @@ class KadaneSceneAssets(Scene):
     **kwargs
   ):
     if 'run_time' not in kwargs:
-      kwargs['run_time']=0.5
+      kwargs['run_time']=0.6
 
     super().play(*args,**kwargs)
 

@@ -1,1 +1,11 @@
+# ---------------- Perfect line ----------------
+Points are perfectly collinear.
+The line that best describes this dataset is the line that passes through all of them.
 
+
+
+# ---------------- Noncollinear Points ----------------
+When the points are noncollinear,
+there is not a single line that perfectly describes them.
+
+To solve this, we draw the line whose sum of squares distance is the smallest.

@@ -1,1 +1,33 @@
+# ---------------- Apply Linear Transformation ----------------
+Scaled by a factor of 2
 
+But its direction remain unchanged.
+
+This is what we call eigenvector.
+
+The factor of 2 is called eigenvalue.
+
+
+
+# ---------------- Eigenvector Family ----------------
+Any vector on the span of an eigenvector is also an eigenvector.
+
+
+
+# ---------------- Example ----------------
+The is also an eigenvector
+
+It still remains on its span even after the transformation
+
+The eigenvalue associated with it is -1
+
+
+
+# ---------------- Matrix with zero eigenvectors ----------------
+Not every matrix has eigenvectors.
+
+Take the matrix that represents 30 degrees rotation.
+
+Every vector changes direction.
+
+So the matrix has zero eigenvectors.

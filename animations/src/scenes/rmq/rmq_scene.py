@@ -29,11 +29,14 @@ class RMQScene(RMQSceneAssets):
       DOWN,
       buff=0.3
     )
-    self.play(FadeIn(pointer))
 
     current_min=self.array[2]
     min_display=self.create_min_display(current_min)
-    self.play(FadeIn(min_display))
+
+    self.play(
+      FadeIn(pointer),
+      FadeIn(min_display)
+    )
 
     for row in range(3,6):
       target_el=self.array_vgroup[row]
@@ -52,7 +55,6 @@ class RMQScene(RMQSceneAssets):
         new_min_tex.move_to(min_display[0].get_center())
 
         self.play(Transform(min_display[1],new_min_tex))
-        self.wait(0.2)
 
     self.play(
       *self.highlight_subarray(2,6,self.CELL_COLOR),
@@ -79,7 +81,6 @@ class RMQScene(RMQSceneAssets):
       )
 
     self.play(MoveToTarget(self.array_vgroup))
-    self.wait(0.3)
 
 
 
