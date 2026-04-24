@@ -15,7 +15,7 @@ class JarvisMarchScene(JarvisMarchSceneAssets):
 
 
 
-    # ---------------- Points ----------------
+    # ---------------- Begin ----------------
     dots=[
       self.build_dot(p,self.DOT_COLOR)
       for p in self.points
@@ -174,7 +174,11 @@ class JarvisMarchScene(JarvisMarchSceneAssets):
       for i in hull_indices+[start_idx]
     ]
 
-    self.play_hull_finish(hull_dots,hull_lines,hull_positions)
+    self.play_hull_finish(
+      hull_dots,
+      hull_lines,
+      hull_positions
+    )
 
 
 

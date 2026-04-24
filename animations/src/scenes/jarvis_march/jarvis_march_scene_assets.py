@@ -23,10 +23,19 @@ class JarvisMarchSceneAssets(Scene):
   def play(self,*args,**kwargs):
     if 'run_time' not in kwargs:
       kwargs['run_time']=0.6
+
     super().play(*args,**kwargs)
 
-  def build_dot(self,pos,color):
-    return Dot(point=pos,color=color,radius=0.08)
+  def build_dot(
+    self,
+    pos,
+    color:ManimColor
+  )->Dot:
+    return Dot(
+      point=pos,
+      color=color,
+      radius=0.08
+    )
 
   def build_line(
     self,
@@ -34,14 +43,19 @@ class JarvisMarchSceneAssets(Scene):
     end,
     color:ManimColor
   )->Line:
-    return Line(start=start,end=end,color=color,stroke_width=2.5)
+    return Line(
+      start=start,
+      end=end,
+      color=color,
+      stroke_width=2.5
+    )
 
   def build_dashed_line(
     self,
     start,
     end,
-    color
-  ):
+    color:ManimColor
+  )->DashedLine:
     return DashedLine(
       start=start,
       end=end,
@@ -51,7 +65,13 @@ class JarvisMarchSceneAssets(Scene):
       dashed_ratio=0.5
     )
 
-  def build_arc(self,center,angle,color,radius=0.5):
+  def build_arc(
+    self,
+    center,
+    angle,
+    color:ManimColor,
+    radius=0.5
+  )->Arc:
     return Arc(
       radius=radius,
       start_angle=0,
@@ -60,7 +80,12 @@ class JarvisMarchSceneAssets(Scene):
       arc_center=center
     )
 
-  def play_hull_finish(self,hull_dots,hull_lines,positions):
+  def play_hull_finish(
+    self,
+    hull_dots,
+    hull_lines,
+    positions
+  ):
     polygon=Polygon(
       *positions,
       fill_color=self.HULL_COLOR,
