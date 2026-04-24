@@ -10,6 +10,12 @@ class GramSchmidt3DScene(GramSchmidt3DAssets):
     )
 
 
+
+    # ---------------- Begin Buff ----------------
+    self.wait(1)
+
+
+
     # ---------------- Begin ----------------
     xy_plane=self.build_xy_plane()
     xz_plane=self.build_xz_plane()
@@ -22,25 +28,25 @@ class GramSchmidt3DScene(GramSchmidt3DAssets):
 
 
     # ---------------- Original Basis ----------------
-    v1_point=self.build_point_arrow(self.VECTOR_COLOR)
-    v1_full=self.build_arrow(self.v1,self.VECTOR_COLOR)
+    anim_v1_grow,el_v1=self.vector(
+      vector=self.v1,
+      color=self.VECTOR_COLOR
+    )
 
-    v2_point=self.build_point_arrow(self.VECTOR_COLOR)
-    v2_full=self.build_arrow(self.v2,self.VECTOR_COLOR)
+    anim_v2_grow,el_v2=self.vector(
+      vector=self.v2,
+      color=self.VECTOR_COLOR
+    )
 
-    v3_point=self.build_point_arrow(self.VECTOR_COLOR)
-    v3_full=self.build_arrow(self.v3,self.VECTOR_COLOR)
-
-    self.add(
-      v1_point,
-      v2_point,
-      v3_point
+    anim_v3_grow,el_v3=self.vector(
+      vector=self.v3,
+      color=self.VECTOR_COLOR
     )
 
     self.play(
-      Transform(v1_point,v1_full),
-      Transform(v2_point,v2_full),
-      Transform(v3_point,v3_full)
+      anim_v1_grow,
+      anim_v2_grow,
+      anim_v3_grow
     )
 
 
@@ -49,8 +55,8 @@ class GramSchmidt3DScene(GramSchmidt3DAssets):
     self.play(
       FadeOut(
         xz_plane,
-        v3_point
-      ),
+        el_v3
+      )
     )
 
     # ---------------- Span of v1 ----------------
@@ -63,11 +69,8 @@ class GramSchmidt3DScene(GramSchmidt3DAssets):
 
     self.play(Create(span_line))
 
-    # ---------------- Projection math ----------------
-    proj_vec=self.compute_proj(
-      self.v2,
-      self.v1
-    )
+    # ---------------- Projection of v2 onto v1 ----------------
+    proj_vec=self.compute_proj(self.v2,self.v1)
     orth_vec=self.v2-proj_vec
 
     dashed=self.build_dashed_line(
@@ -78,71 +81,53 @@ class GramSchmidt3DScene(GramSchmidt3DAssets):
 
     self.play(Create(dashed))
 
-    # ---------------- Projection arrow ----------------
-    proj_point=self.build_point_arrow(YELLOW)
-    proj_full=self.build_arrow(
-      vec=proj_vec,
+    anim,proj_arrow=self.vector(
+      vector=proj_vec,
       color=YELLOW
     )
 
-    self.add(proj_point)
-    self.play(
-      Transform(
-        proj_point,
-        proj_full
-      )
-    )
+    self.play(anim)
 
-    # ---------------- Orthogonal arrow at proj tip ----------------
-    orth_point=Arrow3D(
-      start=proj_vec,
-      end=proj_vec,
+    # ---------------- Orthogonal Component of v2 ----------------
+    anim,orth_arrow=self.vector(
+      vector=orth_vec,
       color=RED,
-      thickness=0.02
+      start=proj_vec
     )
 
-    orth_at_proj=Arrow3D(
-      start=proj_vec,
-      end=proj_vec+orth_vec,
-      color=RED,
-      thickness=0.02
-   )
+    self.play(anim)
 
-    self.add(orth_point)
-    self.play(
-      Transform(
-        orth_point,
-        orth_at_proj
-      )
-    )
-
-    # ---------------- Move orth to origin, fade v2 ----------------
-    orth_at_origin=self.build_arrow(
-      vec=orth_vec,
+    orth_at_origin=self.build_vector(
+      start=ORIGIN,
+      end=orth_vec,
       color=RED
     )
 
     self.play(
-      Transform(orth_point,orth_at_origin),
-      FadeOut(
-        v2_point,
-        dashed,
-        span_line,
-        proj_point,
-        proj_full
+      Transform(
+        orth_arrow,
+        orth_at_origin
       ),
+      FadeOut(
+        el_v2,dashed,
+        span_line,
+        proj_arrow
+      )
     )
 
 
 
     # ---------------- Gram Schmidt Finale ----------------
     self.play(
-      FadeIn(xz_plane),
-      FadeIn(v3_point)
+      FadeIn(
+        xz_plane,
+        el_v3
+      ),
     )
 
     # ---------------- Spans of the two plane vectors ----------------
     orth_dir=orth_vec/np.linalg.norm(orth_vec)
+
     span_v1=self.build_dashed_line(
       start=v1_dir*-6,
       end=v1_dir*6,
@@ -150,8 +135,9 @@ class GramSchmidt3DScene(GramSchmidt3DAssets):
     )
 
     span_orth=self.build_dashed_line(
-      orth_dir*-6,
-      orth_dir*6,RED
+      start=orth_dir*-6,
+      end=orth_dir*6,
+      color=RED
     )
 
     self.play(
@@ -161,13 +147,12 @@ class GramSchmidt3DScene(GramSchmidt3DAssets):
 
     # ---------------- Dashed lines from v3 tip onto each span ----------------
     proj_v3_v1=self.compute_proj(
-      self.v3,
-      self.v1
+      from_=self.v3,
+      to=self.v1
     )
-
     proj_v3_orth=self.compute_proj(
-      self.v3,
-      orth_vec
+      from_=self.v3,
+      to=orth_vec
     )
 
     dashed_v3_v1=self.build_dashed_line(
@@ -188,122 +173,71 @@ class GramSchmidt3DScene(GramSchmidt3DAssets):
     )
 
     # ---------------- Grow the two projections ----------------
-    proj_v3_v1_point=Arrow3D(
-      start=ORIGIN,
-      end=ORIGIN,
-      color=YELLOW,
-      thickness=0.02
-    )
-    proj_v3_v1_full=self.build_arrow(
-      vec=proj_v3_v1,
+    anim_v1_grow,proj_v3_v1_arrow=self.vector(
+      vector=proj_v3_v1,
       color=YELLOW
     )
-
-    proj_v3_orth_point=Arrow3D(
-      start=ORIGIN,
-      end=ORIGIN,
-      color=RED,
-      thickness=0.02
-    )
-    proj_v3_orth_full=self.build_arrow(
-      vec=proj_v3_orth,
+    anim_v2_grow,proj_v3_orth_arrow=self.vector(
+      vector=proj_v3_orth,
       color=RED
     )
 
-    self.add(
-      proj_v3_v1_point,
-      proj_v3_orth_point
-    )
     self.play(
-      Transform(
-        proj_v3_v1_point,
-        proj_v3_v1_full
-      ),
-      Transform(
-        proj_v3_orth_point,
-        proj_v3_orth_full
-      )
+      anim_v1_grow,
+      anim_v2_grow
     )
 
     # ---------------- Slide proj_orth to tip of proj_v1 ----------------
-    shifted_full=Arrow3D(
+    shifted_full=self.build_vector(
       start=proj_v3_v1,
       end=proj_v3_v1+proj_v3_orth,
-      color=RED,
-      thickness=0.02
+      color=RED
     )
 
     self.play(
       Transform(
-        proj_v3_orth_point,
+        proj_v3_orth_arrow,
         shifted_full
       )
     )
 
     # ---------------- Resultant vector ----------------
     resultant_vec=proj_v3_v1+proj_v3_orth
-    resultant_point=Arrow3D(
-      start=ORIGIN,
-      end=ORIGIN,
-      color=PURPLE,
-      thickness=0.02
-    )
-
-    resultant_full=self.build_arrow(
-      vec=resultant_vec,
+    anim,resultant_arrow=self.vector(
+      vector=resultant_vec,
       color=PURPLE
     )
 
-    self.add(resultant_point)
-    self.play(
-      Transform(
-        resultant_point,
-        resultant_full
-      )
-    )
+    self.play(anim)
 
     # ---------------- Orthogonal vector at v3 tip ----------------
     orth3_vec=self.v3-resultant_vec
-    orth3_at_tip_point=Arrow3D(
-      start=resultant_vec,
-      end=resultant_vec,
+    anim,orth3_arrow=self.vector(
+      vector=orth3_vec,
       color=GREEN,
-      thickness=0.02
+      start=resultant_vec
     )
 
-    orth3_at_tip_full=Arrow3D(
-      start=resultant_vec,
-      end=resultant_vec+orth3_vec,
+    self.play(anim)
+
+    # ---------------- Move to origin, fade everything ----------------
+    orth3_at_origin=self.build_vector(
+      start=ORIGIN,
+      end=orth3_vec,
       color=GREEN,
-      thickness=0.02
     )
 
-    self.add(orth3_at_tip_point)
     self.play(
-      Transform(
-        orth3_at_tip_point,
-        orth3_at_tip_full
+      Transform(orth3_arrow,orth3_at_origin),
+      FadeOut(
+        span_v1,span_orth,
+        proj_v3_v1_arrow,proj_v3_orth_arrow,
+        dashed_v3_v1,dashed_v3_orth,
+        resultant_arrow,el_v3
       )
     )
 
-    # ---------------- Fade out spans, projections, shifted ----------------
-    orth3_at_origin=self.build_arrow(
-      vec=orth3_vec,
-      color=GREEN
-    )
 
-    self.play(
-      FadeOut(
-        span_v1,
-        span_orth,
-        proj_v3_v1_point,
-        proj_v3_orth_point,
-        dashed_v3_v1,
-        dashed_v3_orth,
-        resultant_point,
-        v3_point,
-      ),
-      Transform(orth3_at_tip_point,orth3_at_origin),
-    )
 
+    # ---------------- End Buff ----------------
     self.wait(1)

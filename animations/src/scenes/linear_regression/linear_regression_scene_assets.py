@@ -36,6 +36,16 @@ class LinearRegressionSceneAssets(Scene):
 
     return result
 
+  def play(
+    self,
+    *args,
+    **kwargs
+  ):
+    if 'run_time' not in kwargs:
+      kwargs['run_time']=0.6
+
+    super().play(*args,**kwargs)
+
   def setup(self):
     self.el_collinear_points=[
       Dot(
