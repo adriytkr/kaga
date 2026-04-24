@@ -17,10 +17,6 @@ import Youtube from './components/Media/Youtube.vue';
 
 import DefinitionTooltip from './components/content/DefinitionTooltip.vue';
 
-// import CheckpointType2 from './components/article/Checkpoint/Type2/CheckpointType2.vue';
-// import CheckpointBlank from './components/article/Checkpoint/Type2/CheckpointBlank.vue';
-// import CheckpointSelect from './components/article/Checkpoint/Type2/CheckpointSelect.vue';
-
 import Presentation from './components/content/Presentation/Presentation.vue';
 
 export default {
@@ -37,10 +33,6 @@ export default {
     app.component('Youtube',Youtube);
 
     app.component('Definition',DefinitionTooltip);
-
-    // app.component('CheckpointType2',CheckpointType2);
-    // app.component('CheckpointBlank',CheckpointBlank);
-    // app.component('CheckpointSelect',CheckpointSelect);
 
     app.component('Presentation',Presentation);
 
