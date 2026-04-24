@@ -9,7 +9,7 @@ class GramSchmidt3DAssets(ThreeDScene):
 
   v1=np.array([3,1,0])
   v2=np.array([1,3,0])
-  v3=np.array([4,4,3])
+  v3=np.array([1,1,3])
 
   def build_xy_plane(self):
     return NumberPlane(
@@ -48,3 +48,20 @@ class GramSchmidt3DAssets(ThreeDScene):
       color=color,
       thickness=0.02
     )
+
+  def build_dashed_line(
+    self,
+    start,
+    end,
+    color
+  )->DashedLine:
+    return DashedLine(
+      start=start,
+      end=end,
+      color=color,
+      dash_length=0.15,
+      dashed_ratio=0.5
+    )
+
+  def compute_proj(self,v,onto):
+    return (np.dot(v,onto)/np.dot(onto,onto))*onto
