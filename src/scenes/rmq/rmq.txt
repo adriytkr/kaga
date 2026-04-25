@@ -1,0 +1,32 @@
+range minimum query: finding the minimum value in any subarray
+
+Build a Sparse Table to precompute minimums specific subarrays.
+
+Rows → starting index
+Columns → length as power of two
+
+This cell corresponds to the subarray that starts at index 3 and has a length of 2² = 4.
+
+The minimum value is -3,
+
+so we store it.
+
+To find the minimum of a large subarray
+
+we halve it into two previously computed subarrays.
+
+We have already calculated their minimum.
+
+Take the minimum between them.
+
+Any query can be computed by just looking at the table.
+
+If the length is not a power of 2, take the largest power of 2 that fits.
+
+Query from the left
+
+and query from the right.
+
+Together, they cover the whole subarray.
+
+The minimum between them is the minimum value.
